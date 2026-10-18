@@ -1,0 +1,9 @@
+build/
+.lake/
+__pycache__/
+*.aux
+*.log
+!logs/*.log
+*.out
+*.synctex.gz
+.DS_Store

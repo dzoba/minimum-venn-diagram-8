@@ -1,0 +1,36 @@
+input: calibration/venn8_40_source_variant030.json
+input sha256: db61a35ad8d38400ca56f5c5cbe4f662c4a04a4a81afe0db98f93155e7b41108
+python 3.14.7
+run at 2026-10-18 18:26:00 EDT
+ae8328f8795f0a091c704f0ae5779f5ae8800d0936c0337d92922d873db39608  checkers/check_a.py
+678dd640c7138bec26b6f317c2c4ffe0f5dc818b078364e8cb640d7ea24cf06e  checkers/check_b.py
+490ac0630d4e62ac89114f70d1dfbdc72fd61e0a3c886184bbbe01f3daffe336  checkers/ref37_v2.py
+
+===== python3.14 checkers/check_a.py calibration/venn8_40_source_variant030.json
+exit status 0 (PASS), 0.03 s
+n=8 crossings(faces)=40 edges=294
+PASS
+
+===== python3.14 checkers/check_b.py calibration/venn8_40_source_variant030.json
+exit status 0 (PASS), 0.03 s
+n=8 crossings=40 edges=294
+PASS
+
+===== python3.14 checkers/ref37_v2.py calibration/venn8_40_source_variant030.json
+exit status 0 (PASS), 0.04 s
+argv: ['checkers/ref37_v2.py', 'calibration/venn8_40_source_variant030.json']
+input sha256: db61a35ad8d38400ca56f5c5cbe4f662c4a04a4a81afe0db98f93155e7b41108
+script sha256: 490ac0630d4e62ac89114f70d1dfbdc72fd61e0a3c886184bbbe01f3daffe336
+curve 0: 36 segments, through 36 crossings, single closed curve: True
+curve 1: 38 segments, through 38 crossings, single closed curve: True
+curve 2: 38 segments, through 38 crossings, single closed curve: True
+curve 3: 38 segments, through 38 crossings, single closed curve: True
+curve 4: 38 segments, through 38 crossings, single closed curve: True
+curve 5: 38 segments, through 38 crossings, single closed curve: True
+curve 6: 36 segments, through 36 crossings, single closed curve: True
+curve 7: 32 segments, through 32 crossings, single closed curve: True
+touching pairs at crossings: 546  crossing pairs: 416
+V,E,F = 256 294 40  face sizes {10: 8, 14: 2, 16: 30}
+certificate edge list matches face-derived edges: True 294
+RESULT: PASS
+

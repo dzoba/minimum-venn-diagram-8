@@ -1,0 +1,7 @@
+'Venn8.min_venn8_37' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Venn8.reach_of_inducedConnected' depends on axioms: [propext, Quot.sound]
+'Venn8.joined_of_inducedConnected' depends on axioms: [propext, Quot.sound]
+'Venn8.cert_halfTurn' depends on axioms: [propext, Quot.sound]
+Venn8.min_venn8_37 :
+  (Venn8.IsVennDual8 Venn8.cert ∧ Venn8.CrossingAtEachPoint Venn8.cert) ∧
+    Venn8.cert.length = 37 ∧ ∀ (fs : List Venn8.Face), Venn8.IsVennDual8 fs → 37 ≤ fs.length

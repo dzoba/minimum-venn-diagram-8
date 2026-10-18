@@ -1,0 +1,19 @@
+Copyright (c) 2026 Chris Dzoba
+
+The paper text and PDF, figure, documentation, and data in this repository are
+licensed under the Creative Commons Attribution 4.0 International License
+(SPDX identifier: CC-BY-4.0).
+
+License and legal terms:
+https://creativecommons.org/licenses/by/4.0/
+https://creativecommons.org/licenses/by/4.0/legalcode
+
+Attribution: Chris Dzoba, "A minimum Venn diagram of order eight" (2026).
+Identify modifications when redistributing adapted material.
+
+The two files in calibration/ are by John Seamons, from Zenodo record
+https://doi.org/10.5281/zenodo.22004839, and are redistributed under their own
+CC BY 4.0 license; see calibration/README.md.
+
+Program source, Lean source, and scripts are instead licensed under
+LICENSE-CODE. External dependencies retain their own licenses.
