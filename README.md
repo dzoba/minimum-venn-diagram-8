@@ -17,7 +17,8 @@ of the 8-cube whose faces are the crossings.
 
 Also in this repository:
 - a second 37-crossing diagram, not isomorphic to the first;
-- the symmetry: both have a half-turn, and no 8-Venn diagram with 37 crossings has a larger symmetry group;
+- the symmetry: both have a half-turn, and no 8-Venn diagram with 37 crossings has a larger group of
+  orientation-preserving symmetries (the paper excludes reflections in outline only);
 - a 9-Venn diagram with 74 crossings (BGMV's table lists 80), obtained by BGMV's doubling lemma and optimal among
   9-Venn diagrams in which some curve meets every other curve exactly twice; the general lower bound for n = 9
   is still 64;
@@ -132,7 +133,7 @@ tectonic venn37.tex
 
 ## How to cite
 
-Chris Dzoba, *A minimum Venn diagram of order eight*, 2026.
+Chris Dzoba, *A minimum Venn diagram of order eight*, 2026. https://github.com/dzoba/minimum-venn-diagram-8
 
 ## License
 
