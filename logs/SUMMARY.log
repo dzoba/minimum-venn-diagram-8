@@ -1,9 +1,9 @@
 # Positive runs (every file is expected to PASS all three checkers)
 python 3.14.7
-run at 2026-10-18 18:26:00 EDT
+run at 2026-10-18 22:39:33 EDT
 ae8328f8795f0a091c704f0ae5779f5ae8800d0936c0337d92922d873db39608  checkers/check_a.py
 678dd640c7138bec26b6f317c2c4ffe0f5dc818b078364e8cb640d7ea24cf06e  checkers/check_b.py
-490ac0630d4e62ac89114f70d1dfbdc72fd61e0a3c886184bbbe01f3daffe336  checkers/ref37_v2.py
+8acc018a70fe76c5a95998a1defadd202c345a2348522a80e9f89116f09d6399  checkers/ref37_v2.py
 
 file                                             n     F  check_a  check_b  ref37_v2
 data/venn10_148.json                            10   148  PASS     PASS     PASS
@@ -37,6 +37,8 @@ venn9_74_mixed_r2: face 0 dropped                FAIL     FAIL     FAIL
 venn8_39_crossing_candidate: face 0 dropped      FAIL     FAIL     FAIL
 venn8_40_source_variant030: face 0 dropped       FAIL     FAIL     FAIL
 venn8_37_halfturn_a: face 0 reversed             FAIL     FAIL     FAIL
-venn8_37_halfturn_a: label 255 replaced by 254   FAIL     FAIL     REJECTED (exception)
+venn8_37_halfturn_a: label 255 replaced by 254   FAIL     FAIL     FAIL
+t05 (n=3): only condition 3 fails                FAIL     FAIL     FAIL
+t01 (n=4): only the vertex links fail            FAIL     FAIL     FAIL
 
 ALL REQUIREMENTS MET

@@ -1,8 +1,11 @@
-"""Independent referee for a minimum-vertex n-Venn certificate (Claude/Venn session), v2 2026-10-17.
-v2 changes from v1 (v1 kept unchanged as ref37.py): accurate docstring for check 6; an edge-list mismatch is a
-failure; nonzero exit code on failure; logs argv and the SHA-256 of the input and of this script.
+"""Referee checker for a minimum-vertex n-Venn certificate, v2 2026-10-17. Written from scratch from BGMV's definition
+by a separate Claude instance acting as referee (see the paper's section on the use of AI tools); it shares no code
+with check_a.py or check_b.py. v2 changes from the unreleased v1: accurate docstring for check 6; an edge-list
+mismatch is a failure; nonzero exit code on failure; logs argv and the SHA-256 of the input and of this script.
+Release changes: a face on which some direction does not occur exactly twice is reported and skipped by the crossing
+test instead of crashing it, and any other malformed input is reported as FAIL (exit status 1), not as a traceback.
 
-Input: faces = cycles of region labels (subsets of {0..7} as bitmasks) around each crossing point.
+Input: faces = cycles of region labels (subsets of {0, ..., n-1} as bitmasks) around each crossing point.
 Checks, from the face cycles only:
   1. every consecutive pair in a face cycle differs in exactly one bit (adjacent regions across one curve);
   2. every directed edge occurs in exactly one face and its reverse in exactly one face (closed oriented surface);
@@ -14,11 +17,21 @@ Checks, from the face cycles only:
      least one pair of curves crosses there (their two positions interleave); other pairs may touch (BGMV definition:
      "in any intersection point of at least two curves, at least two of them must cross");
   7. each curve i is a single closed curve: the H-edges flipping bit i, joined through crossings, form one cycle;
-  8. the region labelled 0 exists (outer region) and bit i is consistent (follows from 1,7 on the sphere).
-Also: counts, face-size histogram, and comparison with the certificate's own edge list (not used for the checks).
+     and BGMV condition 3: for each i, the labels with and without bit i each induce a connected subgraph.
+  (That the region labelled 0 exists and every bit is consistent follows from 1, 5 and 7; there is no separate code.)
+Also: counts, face-size histogram, and comparison with the certificate's own edge list.
 """
 import json, sys, hashlib
 from collections import defaultdict, Counter
+
+
+def _malformed(exc_type, exc, tb):
+    """Report a crash on malformed input as a failure (the exit status is 1 either way)."""
+    print(f'FAIL: malformed input; the checker stopped with {exc_type.__name__}: {exc}')
+    print('RESULT: FAIL')
+
+
+sys.excepthook = _malformed
 
 F = sys.argv[1]
 print('argv:', sys.argv)
@@ -63,7 +76,7 @@ for fi, cyc in enumerate(faces):
     for j, b in enumerate(bits):
         pos[b].append(j)
     cross = touch = 0
-    keys = sorted(pos)
+    keys = sorted(b for b in pos if b >= 0 and len(pos[b]) == 2)   # malformed directions were reported above
     for x in range(len(keys)):
         for y in range(x + 1, len(keys)):
             a1, a2 = pos[keys[x]]; b1, b2 = pos[keys[y]]

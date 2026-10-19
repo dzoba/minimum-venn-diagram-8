@@ -11,20 +11,24 @@
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
 \hypersetup{pdftitle={A minimum Venn diagram of order eight},pdfauthor={Chris Dzoba}}
+\newcommand{\repo}{\url{https://github.com/dzoba/minimum-venn-diagram-8}}
 \begin{document}
 \begin{center}
 {\LARGE A minimum Venn diagram of order eight}\\[10pt]
 {\large Chris Dzoba}\\[4pt]
-October 2026
+October 2026\\[2pt]
+{\small Certificates, checkers and Lean proof: \repo}
 \end{center}
 
 \begin{abstract}
 Bultena and Ruskey proved in 1998 that an $n$-Venn diagram has at least $L_n=\lceil(2^n-2)/(n-1)\rceil$ crossings
 and conjectured that the bound is attained for every $n\ge 8$. We give an $8$-Venn diagram with $37=L_8$ crossings,
 which settles the case $n=8$ and answers a question of Brenner, Gregor, M\"utze and Verciani; the best known before
-had 39 crossings (Seamons). It has been checked by independently written programs and in Lean~4. It has a half-turn
-symmetry, and no $8$-Venn diagram with 37 crossings has a larger group of orientation-preserving symmetries. Doubling gives a $9$-Venn diagram with 74
-crossings, optimal among those in which some curve meets every other curve exactly twice.
+had 39 crossings (Seamons). Its 37 crossings are listed in an appendix, and it has been checked by three separately
+written programs (see the section on the use of AI tools) and in Lean~4. It has a half-turn symmetry, and in every
+$8$-Venn diagram with 37 crossings a finite group of orientation-preserving symmetries has order at most 2.
+Doubling gives a $9$-Venn diagram with 74 crossings, optimal among those in which some curve meets every other curve
+exactly twice.
 \end{abstract}
 
 \section{Introduction}
@@ -34,8 +38,8 @@ points and create exactly $2^n$ connected regions, one for each combination of b
 In any intersection point of at least two curves at least two of them must cross, and such a point is called a
 \emph{crossing} \cite{BGMV}. Several curves may pass through one crossing, and some of them may only touch there.
 Bultena and Ruskey \cite{BR98} proved that an $n$-Venn diagram, $n\ge2$, has at least
-$L_n=\lceil(2^n-2)/(n-1)\rceil$ crossings, called diagrams attaining the bound \emph{minimum}, and conjectured that
-minimum $n$-Venn diagrams exist for all $n\ge8$ (see also \cite{RW}). They are known for $n\le7$
+$L_n=\lceil(2^n-2)/(n-1)\rceil$ crossings, called diagrams that attain this bound \emph{minimum}, and conjectured
+that minimum $n$-Venn diagrams exist for all $n\ge8$ (see also \cite{RW}). They are known for $n\le7$
 \cite{BR98,BGMV}. For $n=8$, $L_8=37$. Brenner, Gregor, M\"utze and Verciani \cite{BGMV} constructed an $8$-Venn
 diagram with 40 crossings and asked whether 37 is possible. Seamons \cite{Sea} reduced 40 to 39 by an edge surgery
 on a reconstruction of their diagram.
@@ -44,6 +48,9 @@ on a reconstruction of their diagram.
 There is an $8$-Venn diagram with $37$ crossings. So the least number of crossings of an $8$-Venn diagram is $37$,
 and the conjecture of Bultena and Ruskey holds for $n=8$.
 \end{theorem}
+
+The proof is a certificate, the dual graph of the diagram, given by its 37 faces in Appendix~\ref{app:faces}. The
+certificate, three checkers and their logs, and a Lean proof are at \repo.
 
 \section{The certificate}
 
@@ -56,12 +63,28 @@ $j\in[n]$ the subgraphs induced by the vertices $x$ with $j\in x$ and with $j\no
 dual of any subgraph of $Q_n$ with these properties is an $n$-Venn diagram \cite{BGMV}. The faces of $Q(D)$ are the
 crossings of $D$. We work on the sphere; removing a point of a region gives a diagram in the plane.
 
+Theorem~\ref{thm:main} rests on the converse, which \cite{BGMV} state without proof, so we give the argument. Let
+$H$ be a connected plane graph satisfying (1)--(3), and let $H^*$ be its plane dual: a point in each face of $H$,
+and for each edge $e$ an arc $e^*$ that crosses $e$ once and joins the points of the faces on its two sides. For
+$j\in[n]$ let $S_j=\{x:j\in x\}$. The edges of direction $j$ form the cut $\delta(S_j)$, and by (3) both of its
+sides induce connected subgraphs, so $\delta(S_j)$ is a bond (a minimal nonempty cut) of $H$. As $H$ is the plane
+dual of $H^*$, the arcs $e^*$ with $e\in\delta(S_j)$ form a cycle of $H^*$ \cite[Proposition~4.6.1]{Die}; this
+cycle, a simple closed curve, is curve $j$. The other edges of $H$ do not meet it and each edge of $\delta(S_j)$
+crosses it once, so $S_j$ lies on one side of curve $j$ and the other vertices on the other side. Distinct curves
+consist of distinct arcs, so they meet only in the points of the faces, finitely many. The union of the curves is
+$H^*$, whose faces are the regions, one around each vertex $x$ of $H$. Taking the side of curve $j$ that contains
+$S_j$ as its inside (the bounded side once a point of the region $\emptyset$ is removed), the region of $x$ lies
+inside curve $j$ exactly when $j\in x$. By (1) there are $2^n$ regions, one for each combination.
+
 A certificate lists the faces of a plane graph, each as the cyclic sequence of vertex labels around it, with
 $x\subseteq[n]$ stored as $\sum_{i\in x}2^{i-1}$; so curve $i$ is bit $i-1$ in the files, the Lean code and the
-legend of Figure~\ref{fig:diagram}. The certificate \texttt{venn8\_37\_halfturn\_a.json} (SHA-256
-\texttt{7c1fed92\dots c41dd12}) has 256 vertices, 291 edges and 37 faces, 32 of length 16 and five of length 14. So
-32 crossings lie on all eight curves and five on seven. Curves 1, 3, 5, 7 and 8 pass through all 37 crossings, curve
-4 through 36, curves 2 and 6 through 35. At every crossing some pair of curves crosses.
+legend of Figure~\ref{fig:diagram}. A face list in which every edge is traversed once in each direction, the faces
+around every vertex form a single cycle, the graph is connected and $V-E+F=2$ is a combinatorial map of the sphere,
+and it determines a plane graph with exactly these faces, unique up to homeomorphism \cite[Section~3.2]{MT}. The
+certificate \texttt{venn8\_37\_halfturn\_a.json} (SHA-256 \texttt{7c1fed92\dots c41dd12}) has 256 vertices, 291 edges
+and 37 faces, 32 of length 16 and five of length 14. So 32 crossings lie on all eight curves and five on seven.
+Curves 1, 3, 5, 7 and 8 pass through all 37 crossings, curve 4 through 36, curves 2 and 6 through 35. At every
+crossing some pair of curves crosses.
 
 \begin{figure}[t]
 \centering
@@ -79,14 +102,15 @@ vertices, $E$ edges and $F$ faces, so $V-E+F=2$. Face lengths are at most $2n$ a
 $2^n-2=E-F\le(n-1)F$, hence $F\ge L_n$. For $n=8$, $F\ge\lceil254/7\rceil=37$, and $F=37$ forces $E=291$ and
 $\sum_f(8-\ell_f)=5$, where $2\ell_f$ is the length of face $f$.
 
-The repository accompanying this note contains the certificates, three checkers and their logs, the Lean project
-and the drawing program. Theorem~\ref{thm:main} reduces to checking that 37 faces satisfy (1)--(3) and form a plane
-graph. Three separately written checkers do this in a fraction of a second: \texttt{check\_a.py} checks (1)--(3), the induced
+The repository \repo{} contains the certificates, three checkers and their logs, the Lean project and the drawing
+program. Theorem~\ref{thm:main} reduces to checking that 37 faces satisfy (1)--(3) and form a plane graph. Three
+separately written checkers do this in a fraction of a second: \texttt{check\_a.py} checks (1)--(3), the induced
 rotation system and Euler's formula; \texttt{check\_b.py} builds the primal diagram and checks that the arcs of each
-curve form one closed curve; \texttt{ref37\_v2.py}, written from scratch by a separate referee, also checks that
-some pair of curves crosses at each crossing. All three accept both 37-crossing certificates, Seamons's 39 and his
-reconstruction of the 40 of \cite{BGMV}, and reject each of these with a face removed (\texttt{python3
-checkers/run\_all.py}). Two checkers written by Codex also accept both 37-crossing certificates.
+curve form one closed curve; \texttt{ref37\_v2.py}, written from scratch by a separate Claude instance acting as
+referee, also checks that some pair of curves crosses at each crossing. All three accept both 37-crossing
+certificates, Seamons's 39 and his reconstruction of the 40 of \cite{BGMV}. They reject each of these with a face
+removed, and two small inputs, built by the referee of this release, in each of which exactly one condition fails:
+condition (3), or the vertex links (\texttt{python3 checkers/run\_all.py}).
 
 For the face list \texttt{cert} of \texttt{venn8\_37\_halfturn\_a.json}, a Lean~4 proof (with Mathlib) in
 \texttt{lean/} establishes
@@ -98,17 +122,34 @@ $\wedge$\\ $\forall$\,\texttt{fs, IsVennDual8 fs}\ $\to$\ \texttt{37}\ $\le$\ \t
 sphere (each edge traversed once in each direction, vertex links single cycles, connected, $V-E+F=2$);
 \texttt{CrossingAtEachPoint} says that two directions interleave on every face. The facts about \texttt{cert} are
 proved by kernel evaluation (\texttt{decide +kernel}), the bound by a general argument, using only the axioms
-\texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}. The characterization of \cite{BGMV} and the
-passage from a combinatorial map to a drawing are cited, not formalized.
+\texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}. The kernel evaluation, in
+\texttt{CertProof.lean}, needs about 16~GiB of memory. Codex compiled the whole project from the same \texttt{.lean}
+files under a different Lake configuration; the axiom list in \texttt{lean/AXIOMS.txt} is the output of that build,
+whose log is not in the repository. With the Lake configuration as released we built \texttt{Defs}, \texttt{Cert},
+\texttt{Decide}, \texttt{LowerBound} and \texttt{Sound}, every module except \texttt{CertProof} and the two that
+depend on it, and confirmed that the bound \texttt{faces\_ge\_37} uses only the three axioms above. The
+forward direction of the characterization of \cite{BGMV} and the passage from a combinatorial map to a drawing are
+cited, not formalized.
 
 \section{Symmetry and a second diagram}\label{sec:sym}
 
-A symmetry of a diagram on the sphere is a homeomorphism mapping the set of curves onto itself. It acts on labels by
-$x\mapsto\pi(x)\mathbin{\triangle}c$ for a permutation $\pi$ of $[n]$ and a set $c\subseteq[n]$. With
-$\sigma=(1\,7)(2\,6)(3\,5)$ and $c=[8]\setminus\{4\}$ (the integer 247), $g(x)=\sigma(x)\mathbin{\triangle}c$ maps
-every face of \texttt{venn8\_37\_halfturn\_a.json} to a face with the same orientation: a half-turn. It fixes no
-region, one arc (dual to the edge between $\{5,6,7\}$ and $\{5,6,7,8\}$, on curve 8) and one crossing, on all curves but curve 4. A
-search over all maps $x\mapsto\pi(x)\mathbin{\triangle}c$ finds no other automorphism of the face list.
+A symmetry of a diagram on the sphere is a homeomorphism mapping the set of curves onto itself. Every diagram has
+infinitely many, for example any homeomorphism that is the identity outside a small disc in one region, so we count
+them by their action on labels. A symmetry acts by $x\mapsto\pi(x)\mathbin{\triangle}c$ for a permutation $\pi$ of
+$[n]$ and a set $c\subseteq[n]$, and this label map sends the face list onto itself, preserving the orientation of
+every face or reversing all of them. We call such label maps \emph{automorphisms} of the diagram. Conversely, a group
+$A$ of automorphisms is realized by a finite group of homeomorphisms isomorphic to $A$, acting on the drawing that
+the face list determines, which is homeomorphic to the diagram: each automorphism permutes the triangles of the
+barycentric subdivision of the decomposition into crossings, arcs and regions, and we map each triangle affinely
+onto its image. So Proposition~\ref{prop:rot} also shows that a diagram with 37 crossings has at most two
+orientation-preserving automorphisms.
+
+With $\sigma=(1\,7)(2\,6)(3\,5)$ and $c=[8]\setminus\{4\}$ (the integer 247), $g(x)=\sigma(x)\mathbin{\triangle}c$
+maps every face of \texttt{venn8\_37\_halfturn\_a.json} to a face with the same orientation: a half-turn. It fixes no
+region, one arc (dual to the edge between $\{5,6,7\}$ and $\{5,6,7,8\}$, on curve 8) and one crossing (face 21 in
+Appendix~\ref{app:faces}), on all curves but curve 4. A search over all maps $x\mapsto\pi(x)\mathbin{\triangle}c$
+finds no other automorphism of the face list, including orientation-reversing ones, so the automorphism group of
+this diagram has order 2.
 
 \begin{proposition}\label{prop:rot}
 Let $G$ be a finite group of orientation-preserving symmetries of an $8$-Venn diagram with $37$ crossings. Then
@@ -133,17 +174,28 @@ So $G$ is cyclic and $|G|\le2$.
 \end{proof}
 
 \begin{remark}
-Orientation-reversing symmetries are also impossible, so the full group is trivial or of order 2. In outline: a
-reversing involution fixes a crossing, so it is a reflection in a circle $M$ \cite{CK}. Its permutation $\pi$ fixes
-an even number $s$ of curves, and each of these meets $M$ twice if its sides are kept. A curve with its sides
-exchanged would equal $M$ and meet another fixed curve only twice, but any two curves share at least 32 crossings.
-Otherwise the Lefschetz number gives $f+a-v=0$ for the invariant crossings, arcs and regions, where $f$ is odd,
-$a\le2s$, $v\in\{0,2^{(8+s)/2}\}$ and $f\le7$ if $s>0$; no case fits. An element of order 4 would square to the
-half-turn and fix its invariant arc pointwise. This is not formalized.
+We sketch why a finite group of symmetries of an $8$-Venn diagram with 37 crossings has no orientation-reversing
+element, so that it has order at most 2; this is not formalized, and for the two diagrams here the search above
+settles it directly. Let $h$ reverse orientation. As $h^2$ preserves it, $h$ has order 2 or 4 by
+Proposition~\ref{prop:rot}. Let $h$ be an involution. It permutes the 37 crossings, an odd number, so it fixes one,
+and by \cite{CK} it is conjugate to a reflection, with a circle $M$ of fixed points (the antipodal map fixes no
+point). Its permutation $\pi$ of the curves is an involution and fixes an even number $s$ of curves. If $h$ keeps
+the two sides of a fixed curve $D$, it acts on $D$ as a reflection of a circle, so $D$ meets $M$ in exactly two
+points. A fixed curve with its sides exchanged would be $M$ itself; then $s\ge2$, and another fixed curve would meet
+it only twice, whereas any two curves share at least 32 crossings, since by $\sum_f(8-\ell_f)=5$ at most five
+crossings miss a curve. So no arc lies in $M$, every invariant arc is reversed, and as $h$ has degree $-1$ its
+Lefschetz number, computed from the cells \cite[Section~22]{Mu}, gives $f+a-v=0$ for the numbers of invariant
+crossings, arcs and regions. Here $f$ is odd; $a\le2s$, since an invariant arc lies on a fixed curve and contains one of its two points
+on $M$; $v\in\{0,2^{(8+s)/2}\}$, the number of solutions of $\pi(x)\mathbin{\triangle}c=x$; and $f\le7$ if $s>0$,
+since the 32 crossings on all eight curves lie on a fixed curve and at most two of them on $M$. No case fits: for
+$s=0$, $a=0$ and $f=v$ is even, and for $s>0$, $f=v-a$ is at most 0 or at least $32-16$. If $h$ had order 4, then
+$h^2$ would be the half-turn of Proposition~\ref{prop:rot}, $h$ would map its unique invariant arc onto itself, and
+$h^2$, the square of a homeomorphism of that arc, would preserve its ends and, being periodic, fix it pointwise;
+but a half-turn has only two fixed points.
 \end{remark}
 
 The certificate \texttt{venn8\_37\_halfturn\_b.json} is a second diagram with 37 crossings, with the same face
-lengths and symmetry $g$. It is not isomorphic to the first, even allowing relabelling of curves, exchange of inside
+lengths and symmetry $g$ and, by the same search, no other automorphism. It is not isomorphic to the first, even allowing relabelling of curves, exchange of inside
 and outside, and reflection: the numbers of crossings on the curves are $34,36,36,37,37,37,37,37$ against
 $35,35,36,37,37,37,37,37$, and the dual graphs have $196$, $50$, $10$ vertices of degree $2$, $3$, $4$ against
 $192$, $58$, $6$.
@@ -151,15 +203,15 @@ $192$, $58$, $6$.
 \section{Nine and more curves}\label{sec:nine}
 
 A face of the dual is \emph{colorful} if it has length $2n$ and contains complementary vertices $x$ and
-$[n]\setminus x$. By \cite[Lemma~11]{BGMV}, a diagram whose dual has a colorful face gives an $(n+1)$-Venn diagram
-with twice as many crossings and again a colorful face: two copies of the dual, the second with $n+1$ added to every
-label, are joined by the edges $\{x,x\cup\{n+1\}\}$ and $\{\bar x,\bar x\cup\{n+1\}\}$ for complementary $x,\bar x$ on
-that face. The face of
-\texttt{venn8\_37\_halfturn\_a.json} containing $\{6,7,8\}$ and $\{1,\dots,5\}$ is colorful, which gives $n$-Venn
-diagrams with $37\cdot2^{n-8}$ crossings (Table~\ref{tab:double}; for $n=16$ the 5118 of \cite{BGMV} is smaller).
-The 9-Venn diagram \texttt{venn9\_74.json} also passes the two checkers of Codex. The files for $10\le n\le15$ were
-checked only by the three programs in \texttt{checkers/}; \texttt{checkers/invariants.py} confirms that each is the
-doubling of the previous one.
+$[n]\setminus x$. By \cite[Lemma~10]{BGMV} (Lemma~11 in arXiv:2511.09230v1, which contains its proof), a diagram whose
+dual has a colorful face gives an $(n+1)$-Venn diagram with twice as many crossings and again a colorful face: two
+copies of the dual, the second with $n+1$ added to every label, are joined by the edges $\{x,x\cup\{n+1\}\}$ and
+$\{\bar x,\bar x\cup\{n+1\}\}$ for complementary $x,\bar x$ on that face. The face of
+\texttt{venn8\_37\_halfturn\_a.json} containing $\{6,7,8\}$ and $\{1,\dots,5\}$ (face 1 in
+Appendix~\ref{app:faces}) is colorful, which gives $n$-Venn diagrams with $37\cdot2^{n-8}$ crossings
+(Table~\ref{tab:double}; for $n=16$ the 5118 of \cite{BGMV} is smaller). The files for $9\le n\le15$ were checked
+by the three programs in \texttt{checkers/}; \texttt{checkers/invariants.py} confirms that each is the doubling of
+the previous one.
 
 \begin{table}[h]
 \centering\small
@@ -193,8 +245,8 @@ on the other side, and $k\ge2$ crossings lie on $c$, so $F\ge2(L_m-1)+k$.
 \end{proof}
 
 This bounds one class only; in general only $L_9=64$ is known. Our search also found 74-crossing $9$-Venn diagrams
-outside the class (\texttt{venn9\_74\_mixed\_r2.json}, \texttt{venn9\_74\_k3\_nearmiss.json}), and none with fewer
-than 74 crossings.
+outside the class (\texttt{venn9\_74\_mixed\_r2.json}, \texttt{venn9\_74\_k3\_nearmiss.json}). Local searches from
+these and other diagrams with 74 and 75 crossings found none with 73; they were not exhaustive and give no bound.
 
 \paragraph{How the diagrams were found.} A Metropolis walk over plane spanning subgraphs of $Q_8$, given as rotation
 systems, allowed unbalanced faces and disconnected curve halves at a cost and applied each move together with its
@@ -202,24 +254,88 @@ image under $g$. From half-turn invariant arrangements of the nested cycles of \
 with 38 and 39 crossings, and walks from two 39s with a higher cost per edge reached the two 37s. The search programs
 are not included.
 
+\section*{Data availability}
+The certificates, the checkers and their logs, the negative controls, the Lean project and the drawing program are at
+\repo. The face list of Theorem~\ref{thm:main} is also printed in Appendix~\ref{app:faces}.
+
 \section*{Use of AI tools}
 This work was carried out with AI systems under the author's direction. Claude (Anthropic) wrote and ran the searches,
-the checkers \texttt{check\_a.py} and \texttt{check\_b.py}, the doubling and the drawing, wrote the Lean
-formalization, and drafted the text; a separate Claude instance wrote \texttt{ref37\_v2.py}. The proofs of
+the checkers \texttt{check\_a.py} and \texttt{check\_b.py} and the other scripts in the repository, the doubling and
+the drawing, wrote the Lean formalization, and drafted the text. Separate Claude instances wrote
+\texttt{ref37\_v2.py} and refereed this release; the referee built the two targeted negative controls. The proofs of
 Sections~\ref{sec:sym} and~\ref{sec:nine} were worked out by Claude and Codex (OpenAI). Codex contributed the
-exclusion of reflections and reviewed Proposition~\ref{prop:class}, wrote two further checkers and a reconstruction
-of the first diagram, checked both 37-crossing diagrams and the 74-crossing diagram, and rebuilt and reviewed the Lean
-proof. The author is responsible for the content.
+exclusion of reflections and reviewed Proposition~\ref{prop:class}. It also wrote two further checkers and a
+reconstruction of the first diagram, which accept both 37-crossing diagrams and the 74-crossing ones, and compiled
+and reviewed the Lean proof; these checkers, the reconstruction and the build logs are not part of the repository.
+The author is responsible for the content.
 
 \small
-\begin{thebibliography}{9}\setlength{\itemsep}{0pt}
+\begin{thebibliography}{9}\setlength{\itemsep}{0pt}\raggedright
 \bibitem{BGMV} S.~Brenner, P.~Gregor, T.~M\"utze and F.~Verciani, On minimum Venn diagrams, \emph{SoCG 2026},
-LIPIcs 367 (2026), 21:1--21:18; arXiv:2511.09230.
+LIPIcs 367 (2026), 21:1--21:18; arXiv:2511.09230. Lemma numbers refer to the LIPIcs version.
 \bibitem{BR98} B.~Bultena and F.~Ruskey, Venn diagrams with few vertices, \emph{Electron. J. Combin.} 5 (1998),
 \#R44.
 \bibitem{CK} A.~Constantin and B.~Kolev, The theorem of Ker\'ekj\'art\'o on periodic homeomorphisms of the disc and
 the sphere, \emph{Enseign. Math.} (2) 40 (1994), 193--204.
-\bibitem{RW} F.~Ruskey and M.~Weston, A survey of Venn diagrams, \emph{Electron. J. Combin.}, Dynamic Survey DS5.
-\bibitem{Sea} J.~Seamons, A 39-crossing Venn diagram of order eight, Zenodo (2026), doi:10.5281/zenodo.22004839.
+\bibitem{Die} R.~Diestel, \emph{Graph Theory}, 5th ed., Graduate Texts in Mathematics 173, Springer, 2017.
+\bibitem{MT} B.~Mohar and C.~Thomassen, \emph{Graphs on Surfaces}, Johns Hopkins University Press, Baltimore, 2001.
+\bibitem{Mu} J.~R.~Munkres, \emph{Elements of Algebraic Topology}, Addison-Wesley, Menlo Park, CA, 1984.
+\bibitem{RW} F.~Ruskey and M.~Weston, A survey of Venn diagrams, \emph{Electron. J. Combin.} 4(1) (1997), Dynamic
+Survey DS5, doi:10.37236/26.
+\bibitem{Sea} J.~Seamons, A 39-crossing Venn diagram of order eight, preprint, Zenodo (2026),
+doi:10.5281/zenodo.22004839.
 \end{thebibliography}
+
+\normalsize
+\appendix
+\section{The 37 faces}\label{app:faces}
+
+The faces of \texttt{venn8\_37\_halfturn\_a.json}, numbered from 0 in the order of the file (as in the logs), with
+the orientation of the file. Row $k$ is the cyclic sequence of region labels around crossing $k$; a label is
+$\sum_{i\in x}2^{i-1}$ for the set $x$ of curves containing the region, and consecutive labels, the last and the
+first included, are the two sides of an arc. Faces 2, 5, 21, 25 and 26 have length 14 and miss curves 6, 2, 4, 2
+and 6. Face 1 is the colorful face of Section~\ref{sec:nine}, and face 21 is the crossing fixed by the half-turn $g$.
+The conditions of Section~2 can be checked from this table alone.
+
+\begin{center}\footnotesize\setlength{\tabcolsep}{3.2pt}
+\begin{tabular}{r|rrrrrrrrrrrrrrrr}
+0 & 0 & 1 & 3 & 11 & 27 & 91 & 123 & 107 & 75 & 67 & 71 & 69 & 68 & 196 & 192 & 128 \\
+1 & 0 & 128 & 192 & 224 & 225 & 241 & 209 & 145 & 17 & 19 & 23 & 31 & 15 & 7 & 3 & 1 \\
+2 & 2 & 6 & 4 & 5 & 133 & 129 & 193 & 65 & 81 & 83 & 82 & 90 & 26 & 10 &  &  \\
+3 & 2 & 10 & 26 & 58 & 122 & 250 & 251 & 255 & 253 & 245 & 229 & 197 & 133 & 5 & 4 & 6 \\
+4 & 3 & 7 & 15 & 47 & 175 & 171 & 235 & 234 & 232 & 248 & 249 & 121 & 89 & 91 & 27 & 11 \\
+5 & 8 & 24 & 88 & 216 & 217 & 221 & 93 & 77 & 109 & 101 & 97 & 105 & 104 & 72 &  &  \\
+6 & 8 & 40 & 32 & 36 & 38 & 39 & 167 & 231 & 199 & 215 & 223 & 219 & 217 & 216 & 88 & 24 \\
+7 & 8 & 72 & 104 & 120 & 124 & 92 & 220 & 222 & 214 & 198 & 206 & 202 & 200 & 201 & 137 & 136 \\
+8 & 8 & 136 & 137 & 201 & 73 & 9 & 41 & 57 & 49 & 53 & 55 & 39 & 38 & 36 & 32 & 40 \\
+9 & 9 & 73 & 201 & 200 & 202 & 206 & 198 & 214 & 246 & 182 & 54 & 55 & 53 & 49 & 57 & 41 \\
+10 & 12 & 44 & 108 & 100 & 96 & 98 & 114 & 115 & 243 & 211 & 195 & 203 & 207 & 205 & 204 & 76 \\
+11 & 12 & 76 & 204 & 205 & 207 & 203 & 195 & 211 & 243 & 242 & 226 & 194 & 130 & 138 & 142 & 140 \\
+12 & 12 & 140 & 141 & 143 & 139 & 131 & 163 & 227 & 99 & 115 & 114 & 98 & 96 & 100 & 108 & 44 \\
+13 & 13 & 29 & 28 & 92 & 124 & 120 & 56 & 184 & 186 & 154 & 155 & 159 & 151 & 135 & 143 & 141 \\
+14 & 13 & 141 & 140 & 142 & 138 & 130 & 162 & 178 & 182 & 246 & 214 & 222 & 220 & 92 & 28 & 29 \\
+15 & 14 & 30 & 22 & 18 & 16 & 80 & 84 & 86 & 87 & 95 & 79 & 111 & 239 & 238 & 110 & 46 \\
+16 & 14 & 46 & 110 & 238 & 239 & 237 & 236 & 228 & 244 & 212 & 208 & 144 & 16 & 18 & 22 & 30 \\
+17 & 15 & 31 & 23 & 21 & 20 & 148 & 144 & 208 & 212 & 244 & 228 & 236 & 237 & 239 & 111 & 47 \\
+18 & 16 & 144 & 176 & 160 & 168 & 172 & 173 & 165 & 181 & 149 & 213 & 85 & 87 & 86 & 84 & 80 \\
+19 & 17 & 145 & 209 & 241 & 225 & 233 & 169 & 168 & 160 & 176 & 144 & 148 & 20 & 21 & 23 & 19 \\
+20 & 25 & 89 & 121 & 249 & 248 & 252 & 188 & 180 & 164 & 132 & 134 & 150 & 158 & 156 & 157 & 153 \\
+21 & 25 & 153 & 157 & 156 & 152 & 154 & 186 & 187 & 59 & 43 & 107 & 123 & 91 & 89 &  &  \\
+22 & 26 & 90 & 82 & 83 & 81 & 85 & 213 & 149 & 181 & 165 & 173 & 172 & 174 & 170 & 42 & 58 \\
+23 & 33 & 35 & 34 & 162 & 130 & 194 & 226 & 242 & 243 & 115 & 113 & 117 & 125 & 109 & 45 & 37 \\
+24 & 33 & 37 & 45 & 109 & 77 & 93 & 221 & 217 & 219 & 218 & 210 & 146 & 178 & 162 & 34 & 35 \\
+25 & 39 & 55 & 54 & 182 & 178 & 146 & 210 & 218 & 219 & 223 & 215 & 199 & 231 & 167 &  &  \\
+26 & 42 & 170 & 174 & 172 & 164 & 180 & 188 & 252 & 254 & 255 & 251 & 250 & 122 & 58 &  &  \\
+27 & 43 & 59 & 187 & 186 & 184 & 56 & 120 & 104 & 105 & 97 & 101 & 103 & 71 & 67 & 75 & 107 \\
+28 & 47 & 111 & 79 & 95 & 87 & 85 & 81 & 65 & 64 & 66 & 74 & 106 & 234 & 235 & 171 & 175 \\
+29 & 48 & 50 & 51 & 179 & 147 & 131 & 139 & 143 & 135 & 151 & 183 & 247 & 119 & 118 & 116 & 52 \\
+30 & 48 & 52 & 60 & 61 & 125 & 117 & 113 & 115 & 99 & 227 & 163 & 131 & 147 & 179 & 51 & 50 \\
+31 & 52 & 116 & 112 & 240 & 224 & 192 & 196 & 68 & 69 & 71 & 103 & 101 & 109 & 125 & 61 & 60 \\
+32 & 62 & 63 & 127 & 255 & 254 & 252 & 248 & 232 & 234 & 106 & 74 & 66 & 70 & 78 & 94 & 126 \\
+33 & 62 & 126 & 94 & 78 & 70 & 66 & 64 & 65 & 193 & 129 & 161 & 177 & 185 & 189 & 191 & 190 \\
+34 & 62 & 190 & 191 & 189 & 185 & 177 & 161 & 129 & 133 & 197 & 229 & 245 & 253 & 255 & 127 & 63 \\
+35 & 102 & 118 & 119 & 247 & 183 & 151 & 159 & 155 & 154 & 152 & 156 & 158 & 150 & 134 & 166 & 230 \\
+36 & 102 & 230 & 166 & 134 & 132 & 164 & 172 & 168 & 169 & 233 & 225 & 224 & 240 & 112 & 116 & 118 \\
+\end{tabular}
+\end{center}
 \end{document}

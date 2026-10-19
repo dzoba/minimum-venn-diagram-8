@@ -1,26 +1,26 @@
 input: data/venn11_296.json
-input sha256: 3ff5d72b676ecce5439639921942a22e69a8c1b623166ae9456b57e03393cf29
+input sha256: b968cfb00b90b15d847b670ae48702d00818c7493c380e1551bb9707ce0301e1
 python 3.14.7
-run at 2026-10-18 18:26:00 EDT
+run at 2026-10-18 22:39:33 EDT
 ae8328f8795f0a091c704f0ae5779f5ae8800d0936c0337d92922d873db39608  checkers/check_a.py
 678dd640c7138bec26b6f317c2c4ffe0f5dc818b078364e8cb640d7ea24cf06e  checkers/check_b.py
-490ac0630d4e62ac89114f70d1dfbdc72fd61e0a3c886184bbbe01f3daffe336  checkers/ref37_v2.py
+8acc018a70fe76c5a95998a1defadd202c345a2348522a80e9f89116f09d6399  checkers/ref37_v2.py
 
 ===== python3.14 checkers/check_a.py data/venn11_296.json
-exit status 0 (PASS), 0.05 s
+exit status 0 (PASS), 0.06 s
 n=11 crossings(faces)=296 edges=2342
 PASS
 
 ===== python3.14 checkers/check_b.py data/venn11_296.json
-exit status 0 (PASS), 0.04 s
+exit status 0 (PASS), 0.06 s
 n=11 crossings=296 edges=2342
 PASS
 
 ===== python3.14 checkers/ref37_v2.py data/venn11_296.json
-exit status 0 (PASS), 0.10 s
+exit status 0 (PASS), 0.11 s
 argv: ['checkers/ref37_v2.py', 'data/venn11_296.json']
-input sha256: 3ff5d72b676ecce5439639921942a22e69a8c1b623166ae9456b57e03393cf29
-script sha256: 490ac0630d4e62ac89114f70d1dfbdc72fd61e0a3c886184bbbe01f3daffe336
+input sha256: b968cfb00b90b15d847b670ae48702d00818c7493c380e1551bb9707ce0301e1
+script sha256: 8acc018a70fe76c5a95998a1defadd202c345a2348522a80e9f89116f09d6399
 curve 0: 296 segments, through 296 crossings, single closed curve: True
 curve 1: 280 segments, through 280 crossings, single closed curve: True
 curve 2: 296 segments, through 296 crossings, single closed curve: True

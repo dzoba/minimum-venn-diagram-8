@@ -153,7 +153,7 @@ Invariants of the certificates (computed from the face lists only).
   pair incidences at points: crossing 67326, touching 63074; points where no pair crosses: 0
   colorful faces (index, complementary pairs {x, ~x} with x < ~x): [(4734, [224, 16159]), (4735, [224, 16159])] (2 in all)
 
-== doubling chain (BGMV Lemma 11)
+== doubling chain (BGMV doubling lemma: SoCG 2026 Lemma 10, arXiv:2511.09230v1 Lemma 11)
   data/venn9_74.json is the doubling of data/venn8_37_halfturn_a.json: True (omitted face of the smaller diagram has length 16)
   data/venn10_148.json is the doubling of data/venn9_74.json: True (omitted face of the smaller diagram has length 18)
   data/venn11_296.json is the doubling of data/venn10_148.json: True (omitted face of the smaller diagram has length 20)
@@ -162,12 +162,12 @@ Invariants of the certificates (computed from the face lists only).
   data/venn14_2368.json is the doubling of data/venn13_1184.json: True (omitted face of the smaller diagram has length 26)
   data/venn15_4736.json is the doubling of data/venn14_2368.json: True (omitted face of the smaller diagram has length 28)
 
-== crossings: these files against BGMV Table 1 (Theorem 2: 40 * 2^m) and the lower bound L_n
-  n= 8  L_n=   37  BGMV=   40  here=   37
-  n= 9  L_n=   64  BGMV=   80  here=   74
-  n=10  L_n=  114  BGMV=  160  here=  148
-  n=11  L_n=  205  BGMV=  320  here=  296
-  n=12  L_n=  373  BGMV=  640  here=  592
-  n=13  L_n=  683  BGMV= 1280  here= 1184
-  n=14  L_n= 1261  BGMV= 2560  here= 2368
-  n=15  L_n= 2341  BGMV= 5120  here= 4736
+== crossings: these files (number of faces of each file) against BGMV Table 1 (Theorem 2: 40 * 2^m) and the lower bound L_n
+  n= 8  L_n=   37  BGMV=   40  here=   37  (37 * 2^(n-8) = 37; data/venn8_37_halfturn_a.json)
+  n= 9  L_n=   64  BGMV=   80  here=   74  (37 * 2^(n-8) = 74; data/venn9_74.json)
+  n=10  L_n=  114  BGMV=  160  here=  148  (37 * 2^(n-8) = 148; data/venn10_148.json)
+  n=11  L_n=  205  BGMV=  320  here=  296  (37 * 2^(n-8) = 296; data/venn11_296.json)
+  n=12  L_n=  373  BGMV=  640  here=  592  (37 * 2^(n-8) = 592; data/venn12_592.json)
+  n=13  L_n=  683  BGMV= 1280  here= 1184  (37 * 2^(n-8) = 1184; data/venn13_1184.json)
+  n=14  L_n= 1261  BGMV= 2560  here= 2368  (37 * 2^(n-8) = 2368; data/venn14_2368.json)
+  n=15  L_n= 2341  BGMV= 5120  here= 4736  (37 * 2^(n-8) = 4736; data/venn15_4736.json)

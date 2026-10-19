@@ -10,13 +10,14 @@ curves cross at a point when their two edges on that face interleave (i..k..i..k
 
 For each certificate this prints: V, E, F, the lower bound L_n = ceil((2^n - 2)/(n - 1)); the face-length and
 vertex-degree histograms; the number of points on each curve (= edges of that direction); crossing and touching
-pair incidences; and the colorful faces (length 2n, containing two complementary labels; BGMV Lemma 11).
+pair incidences; and the colorful faces (length 2n, containing two complementary labels; BGMV, Section 5).
 For the 8-curve files it computes the full group of automorphisms x -> pi(x) XOR c of the face list (pi a
 permutation of the curves), orientation preserving (faces map to faces as cyclic sequences) or reversing (faces
 map to reversed faces), with the fixed labels, edges and faces of each nontrivial element.
 For the 9-curve files it prints, for every curve c, the number of points it shares with each other curve
 ("meetings") and how many of those are crossings, and whether some curve meets every other curve exactly twice.
-Finally it checks that each file of the doubling chain is the BGMV Lemma 11 doubling of the previous one.
+Finally it checks that each file of the doubling chain is the doubling of the previous one by BGMV's doubling lemma
+(Lemma 10 of the SoCG 2026 version, LIPIcs 367; Lemma 11 of arXiv:2511.09230v1).
 """
 import itertools
 import json
@@ -187,9 +188,10 @@ def show_meetings(n, faces):
 
 
 def is_doubling(small, big):
-    """Is big (n+1 curves) the Lemma 11 doubling of small (n curves)? Check: the faces of big that avoid direction
-    n are the faces of small minus one colorful face O, once as they are and once with bit n added (each copy up to
-    orientation), and the remaining two faces have length 2(n+1) and use direction n twice."""
+    """Is big (n+1 curves) the BGMV doubling of small (n curves) (Lemma 10 of the SoCG version, Lemma 11 of arXiv
+    v1)? Check: the faces of big that avoid direction n are the faces of small minus one colorful face O, once as they
+    are and once with bit n added (each copy up to orientation), and the remaining two faces have length 2(n+1) and
+    use direction n twice."""
     n, fs = load(small)
     m, fb = load(big)
     if m != n + 1 or len(fb) != 2 * len(fs):
@@ -222,18 +224,21 @@ def main():
         if n == 9:
             show_meetings(n, faces)
         print()
-    print('== doubling chain (BGMV Lemma 11)')
+    print('== doubling chain (BGMV doubling lemma: SoCG 2026 Lemma 10, arXiv:2511.09230v1 Lemma 11)')
     chain = ['data/venn8_37_halfturn_a.json', 'data/venn9_74.json', 'data/venn10_148.json', 'data/venn11_296.json',
              'data/venn12_592.json', 'data/venn13_1184.json', 'data/venn14_2368.json', 'data/venn15_4736.json']
     for a, b in zip(chain, chain[1:]):
         ok, why = is_doubling(a, b)
         print(f'  {b} is the doubling of {a}: {ok} ({why})')
     print()
-    print('== crossings: these files against BGMV Table 1 (Theorem 2: 40 * 2^m) and the lower bound L_n')
+    print('== crossings: these files (number of faces of each file) against BGMV Table 1 (Theorem 2: 40 * 2^m) and '
+          'the lower bound L_n')
     bgmv = {8: 40, 9: 80, 10: 160, 11: 320, 12: 640, 13: 1280, 14: 2560, 15: 5120}
-    for n in range(8, 16):
+    for p in chain:
+        n, faces = load(p)
         Ln = -(-((1 << n) - 2) // (n - 1))
-        print(f'  n={n:2d}  L_n={Ln:5d}  BGMV={bgmv[n]:5d}  here={37 << (n - 8):5d}')
+        print(f'  n={n:2d}  L_n={Ln:5d}  BGMV={bgmv[n]:5d}  here={len(faces):5d}  (37 * 2^(n-8) = {37 << (n - 8)}; '
+              f'{p})')
 
 
 if __name__ == '__main__':

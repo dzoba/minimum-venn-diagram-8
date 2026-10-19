@@ -46,8 +46,9 @@ from collections import defaultdict, Counter
 import numpy as np
 
 ARGS = [a for a in sys.argv[1:] if not a.startswith('--')]
-CERT = ARGS[0] if ARGS else 'results/candidates/venn8_37_halfturn_a.json'
-OUT = ARGS[1] if len(ARGS) > 1 else 'results/candidates/venn8_37.png'
+CERT = ARGS[0] if ARGS else 'data/venn8_37_halfturn_a.json'      # defaults: run from the repository root
+OUT = ARGS[1] if len(ARGS) > 1 else 'build/venn8_37.png'
+os.makedirs(os.path.dirname(OUT) or '.', exist_ok=True)
 CLOSED = '--closed' in sys.argv
 
 d = json.load(open(CERT))

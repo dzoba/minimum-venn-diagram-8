@@ -1,26 +1,26 @@
 input: data/venn13_1184.json
-input sha256: 8fb6022fc235ddefe40dbadae22a18388df151faa89ef028480e307e54d4affc
+input sha256: f0b1b3ea5789285747250ce026d0a3e827bd6eb8eb9cbe3d2879641e04887772
 python 3.14.7
-run at 2026-10-18 18:26:00 EDT
+run at 2026-10-18 22:39:33 EDT
 ae8328f8795f0a091c704f0ae5779f5ae8800d0936c0337d92922d873db39608  checkers/check_a.py
 678dd640c7138bec26b6f317c2c4ffe0f5dc818b078364e8cb640d7ea24cf06e  checkers/check_b.py
-490ac0630d4e62ac89114f70d1dfbdc72fd61e0a3c886184bbbe01f3daffe336  checkers/ref37_v2.py
+8acc018a70fe76c5a95998a1defadd202c345a2348522a80e9f89116f09d6399  checkers/ref37_v2.py
 
 ===== python3.14 checkers/check_a.py data/venn13_1184.json
-exit status 0 (PASS), 0.12 s
+exit status 0 (PASS), 0.14 s
 n=13 crossings(faces)=1184 edges=9374
 PASS
 
 ===== python3.14 checkers/check_b.py data/venn13_1184.json
-exit status 0 (PASS), 0.07 s
+exit status 0 (PASS), 0.10 s
 n=13 crossings=1184 edges=9374
 PASS
 
 ===== python3.14 checkers/ref37_v2.py data/venn13_1184.json
-exit status 0 (PASS), 0.32 s
+exit status 0 (PASS), 0.39 s
 argv: ['checkers/ref37_v2.py', 'data/venn13_1184.json']
-input sha256: 8fb6022fc235ddefe40dbadae22a18388df151faa89ef028480e307e54d4affc
-script sha256: 490ac0630d4e62ac89114f70d1dfbdc72fd61e0a3c886184bbbe01f3daffe336
+input sha256: f0b1b3ea5789285747250ce026d0a3e827bd6eb8eb9cbe3d2879641e04887772
+script sha256: 8acc018a70fe76c5a95998a1defadd202c345a2348522a80e9f89116f09d6399
 curve 0: 1184 segments, through 1184 crossings, single closed curve: True
 curve 1: 1120 segments, through 1120 crossings, single closed curve: True
 curve 2: 1184 segments, through 1184 crossings, single closed curve: True

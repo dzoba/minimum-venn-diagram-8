@@ -7,15 +7,15 @@ Usage, from the repository root:
 
 For each JSON file in data/ and calibration/ this runs check_a.py, check_b.py and ref37_v2.py and writes
 logs/<file>.log. It then builds negative controls in build/negative/ (face 0 dropped from every certificate; on
-venn8_37_halfturn_a.json also one face reversed and one label merged into another), runs all three checkers on
-each, and requires every one of them to reject it (nonzero exit status). Results go to logs/negative_controls.log
-and logs/SUMMARY.log.
+venn8_37_halfturn_a.json also one face reversed and one label merged into another), adds the two targeted controls
+in checkers/negative/ (each violates exactly one condition, condition 3 or the vertex links; see
+checkers/negative/README.md), runs all three checkers on each, and requires every one of them to reject it (nonzero
+exit status). Results go to logs/negative_controls.log and logs/SUMMARY.log.
 
 Requirements enforced (exit status 1 if any fails):
-  - every file in data/ and calibration/ passes check_a.py and check_b.py;
-  - every file passes ref37_v2.py (required only for the two 37-crossing files; all files are run and all are
-    expected to pass);
-  - every negative control is rejected by all three checkers.
+  - every file in data/ and calibration/ passes check_a.py, check_b.py and ref37_v2.py;
+  - every negative control is rejected by all three checkers;
+  - on each targeted control, each checker's output contains the expected reason.
 Only the Python standard library is used.
 """
 import copy
@@ -29,6 +29,19 @@ import time
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CHECKERS = ['checkers/check_a.py', 'checkers/check_b.py', 'checkers/ref37_v2.py']
+# Targeted controls (checkers/negative/README.md): file -> (label, expected substring of each checker's output).
+TARGETED = {
+    'checkers/negative/t05_curve3_two_circles.json':
+        ('t05 (n=3): only condition 3 fails', {
+            'checkers/check_a.py': 'curve 2: a half is disconnected',
+            'checkers/check_b.py': 'curve 2: not a single closed curve',
+            'checkers/ref37_v2.py': 'BGMV cond 3: curve 2 side 1 not connected'}),
+    'checkers/negative/t01_two_spheres_pinched_at_0_and_15.json':
+        ('t01 (n=4): only the vertex links fail', {
+            'checkers/check_a.py': 'corners do not form one rotation cycle',
+            'checkers/check_b.py': 'corners are not one disk',
+            'checkers/ref37_v2.py': 'vertices have a link that is not a single cycle'}),
+}
 
 
 def sha256(path):
@@ -94,11 +107,15 @@ def main():
         fc['vertices'] = [254 if x == 255 else x for x in fc['vertices']]
     controls.append(('venn8_37_halfturn_a: label 255 replaced by 254', 'build/negative/venn8_37_halfturn_a_merge.json',
                      c))
-    neg = ['# Negative controls: every checker must reject every mutated certificate (nonzero exit status)', *hdr, '']
+    for path, (label, _) in TARGETED.items():
+        controls.append((label, path, None))           # committed input, used as it is
+    neg =['# Negative controls: every checker must reject every mutated certificate (nonzero exit status)', *hdr, '']
     summary += ['', '# Negative controls (every checker must reject)', '',
                 f'{"control":48s} check_a  check_b  ref37_v2']
     for label, path, dd in controls:
-        json.dump(dd, open(path, 'w'))
+        if dd is not None:
+            json.dump(dd, open(path, 'w'))
+        expect = TARGETED.get(path, (None, {}))[1]
         res = []
         neg.append(f'===== {label}  ({path}, sha256 {sha256(path)})')
         for ch in CHECKERS:
@@ -107,10 +124,17 @@ def main():
             res.append(v)
             body = [l.strip() for l in out.rstrip().splitlines()]
             if 'FAIL' in body:                       # check_a / check_b: reasons follow a bare FAIL line
-                reason = body[body.index('FAIL') + 1] if body.index('FAIL') + 1 < len(body) else ''
+                reasons = body[body.index('FAIL') + 1:]
             else:                                    # ref37_v2: lines 'FAIL: reason'
-                reason = next((l for l in body if l.startswith('FAIL:')), '')
-            neg.append(f'  {ch}: exit status {code} -> {v}; first reason: {reason[:150]}')
+                reasons = [l for l in body if l.startswith('FAIL:')]
+            if expect:                               # targeted control: every reason, and the expected one
+                found = expect[ch] in out
+                neg.append(f'  {ch}: exit status {code} -> {v}; expected reason "{expect[ch]}" present: {found}')
+                neg += [f'      {r[:150]}' for r in reasons]
+                if not found:
+                    ok = False
+            else:
+                neg.append(f'  {ch}: exit status {code} -> {v}; first reason: {(reasons or [""])[0][:150]}')
             if v == 'REJECTED (exception)':
                 neg.append(f'      (the checker then raised: {body[-1][:150]})')
             if code == 0:
