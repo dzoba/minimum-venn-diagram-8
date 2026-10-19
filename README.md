@@ -1,5 +1,7 @@
 # A minimum Venn diagram of order eight
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23464444.svg)](https://doi.org/10.5281/zenodo.23464444)
+
 Paper, certificates, checkers and Lean proof for **A minimum Venn diagram of order eight**, Chris Dzoba (2026).
 
 ## The result
@@ -158,7 +160,7 @@ tectonic venn37.tex
 
 ## How to cite
 
-Chris Dzoba, *A minimum Venn diagram of order eight*, 2026. https://github.com/dzoba/minimum-venn-diagram-8
+Chris Dzoba, *A minimum Venn diagram of order eight*, 2026. Zenodo, https://doi.org/10.5281/zenodo.23464444 (code, data and paper; GitHub: https://github.com/dzoba/minimum-venn-diagram-8)
 
 ## License
 
