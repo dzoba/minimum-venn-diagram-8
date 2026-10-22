@@ -1,0 +1,40 @@
+input: data/venn12_584.json
+input sha256: 973af58cb3ad8be992cc3dde2c04dbab83135092c5fcad75bd358ae74a675165
+python 3.14.7
+run at 2026-10-22 15:18:54 PDT
+ae8328f8795f0a091c704f0ae5779f5ae8800d0936c0337d92922d873db39608  checkers/check_a.py
+678dd640c7138bec26b6f317c2c4ffe0f5dc818b078364e8cb640d7ea24cf06e  checkers/check_b.py
+8acc018a70fe76c5a95998a1defadd202c345a2348522a80e9f89116f09d6399  checkers/ref37_v2.py
+
+===== python3.14 checkers/check_a.py data/venn12_584.json
+exit status 0 (PASS), 0.10 s
+n=12 crossings(faces)=584 edges=4678
+PASS
+
+===== python3.14 checkers/check_b.py data/venn12_584.json
+exit status 0 (PASS), 0.07 s
+n=12 crossings=584 edges=4678
+PASS
+
+===== python3.14 checkers/ref37_v2.py data/venn12_584.json
+exit status 0 (PASS), 0.22 s
+argv: ['checkers/ref37_v2.py', 'data/venn12_584.json']
+input sha256: 973af58cb3ad8be992cc3dde2c04dbab83135092c5fcad75bd358ae74a675165
+script sha256: 8acc018a70fe76c5a95998a1defadd202c345a2348522a80e9f89116f09d6399
+curve 0: 584 segments, through 584 crossings, single closed curve: True
+curve 1: 576 segments, through 576 crossings, single closed curve: True
+curve 2: 568 segments, through 568 crossings, single closed curve: True
+curve 3: 576 segments, through 576 crossings, single closed curve: True
+curve 4: 576 segments, through 576 crossings, single closed curve: True
+curve 5: 560 segments, through 560 crossings, single closed curve: True
+curve 6: 576 segments, through 576 crossings, single closed curve: True
+curve 7: 584 segments, through 584 crossings, single closed curve: True
+curve 8: 64 segments, through 64 crossings, single closed curve: True
+curve 9: 8 segments, through 8 crossings, single closed curve: True
+curve 10: 4 segments, through 4 crossings, single closed curve: True
+curve 11: 2 segments, through 2 crossings, single closed curve: True
+touching pairs at crossings: 8288  crossing pairs: 8198
+V,E,F = 4096 4678 584  face sizes {14: 64, 16: 464, 18: 48, 20: 4, 22: 2, 24: 2}
+certificate edge list matches face-derived edges: True 4678
+RESULT: PASS
+

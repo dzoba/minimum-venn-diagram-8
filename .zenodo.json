@@ -1,11 +1,12 @@
 {
   "title": "A minimum Venn diagram of order eight: certificates, checkers, Lean proof and paper",
   "upload_type": "dataset",
-  "description": "<p>An 8-Venn diagram with 37 crossings, meeting the Bultena–Ruskey lower bound ⌈(2^8−2)/7⌉ = 37, so 37 is the minimum and the Bultena–Ruskey conjecture holds for n = 8. This answers the question of Brenner, Gregor, Mütze and Verciani (SoCG 2026), whose construction had 40 crossings; the best known before was 39 (Seamons, 2026).</p><p>Contents: two non-isomorphic 37-crossing certificates in the dual-graph form of Brenner et al.; 9-Venn diagrams with 74 crossings (against 80 in their table) and doublings to n = 15; three separately written checkers with logs and negative controls; a Lean 4 proof that the certificate satisfies the dual conditions and that every such face list has at least 37 faces; and a short paper. The searches and proofs were carried out by AI systems under the author's direction, as the paper states.</p>",
+  "description": "<p>An 8-Venn diagram with 37 crossings, meeting the Bultena–Ruskey lower bound ⌈(2^8−2)/7⌉ = 37, so 37 is the minimum and the Bultena–Ruskey conjecture holds for n = 8. This answers the question of Brenner, Gregor, Mütze and Verciani (SoCG 2026), whose construction had 40 crossings; the best known before was 39 (Seamons, 2026).</p><p>Contents: two non-isomorphic 37-crossing certificates in the dual-graph form of Brenner et al.; 9-Venn diagrams with 74 crossings (against 80 in their table) and doublings to n = 15; a 9-Venn diagram with 73 crossings (two-tube doubling of the two 37-crossing diagrams; an upper bound only, the lower bound for n = 9 is 64) and its doublings to n = 15 with 146 to 4672 crossings; three separately written checkers with logs and negative controls; a Lean 4 proof that the certificate satisfies the dual conditions and that every such face list has at least 37 faces; and a short paper. The searches and proofs were carried out by AI systems under the author's direction, as the paper states.</p>",
   "creators": [
     {"name": "Dzoba, Chris"}
   ],
   "license": "cc-by-4.0",
+  "version": "1.1",
   "keywords": [
     "Venn diagram",
     "minimum Venn diagram",

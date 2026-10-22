@@ -1,34 +1,64 @@
 # Negative controls: every checker must reject every mutated certificate (nonzero exit status)
 python 3.14.7
-run at 2026-10-18 22:39:33 EDT
+run at 2026-10-22 15:18:54 PDT
 ae8328f8795f0a091c704f0ae5779f5ae8800d0936c0337d92922d873db39608  checkers/check_a.py
 678dd640c7138bec26b6f317c2c4ffe0f5dc818b078364e8cb640d7ea24cf06e  checkers/check_b.py
 8acc018a70fe76c5a95998a1defadd202c345a2348522a80e9f89116f09d6399  checkers/ref37_v2.py
+
+===== venn10_146: face 0 dropped  (build/negative/venn10_146_dropface0.json, sha256 4aebb9f06193374dde2f5a8273af315908383ee85b60ebf020c67d4a8623b17e)
+  checkers/check_a.py: exit status 1 -> FAIL; first reason: edge 91-123 dart counts 0,1
+  checkers/check_b.py: exit status 1 -> FAIL; first reason: edge (0, 1) sides [(0, -1)]
+  checkers/ref37_v2.py: exit status 1 -> FAIL; first reason: FAIL: directed edge 0->128 has no reverse
 
 ===== venn10_148: face 0 dropped  (build/negative/venn10_148_dropface0.json, sha256 016425417ba6ec93e4ddc2c3b9a959498b1d9ea76b224be59f832f7b5f0523a0)
   checkers/check_a.py: exit status 1 -> FAIL; first reason: edge 91-123 dart counts 0,1
   checkers/check_b.py: exit status 1 -> FAIL; first reason: edge (0, 1) sides [(71, -1)]
   checkers/ref37_v2.py: exit status 1 -> FAIL; first reason: FAIL: directed edge 91->27 has no reverse
 
+===== venn11_292: face 0 dropped  (build/negative/venn11_292_dropface0.json, sha256 14900697677704ad2893d354f51926312fa58e2b37ca86cf059cef10e548c9cc)
+  checkers/check_a.py: exit status 1 -> FAIL; first reason: edge 69-71 dart counts 1,0
+  checkers/check_b.py: exit status 1 -> FAIL; first reason: edge (0, 1) sides [(0, -1)]
+  checkers/ref37_v2.py: exit status 1 -> FAIL; first reason: FAIL: directed edge 0->128 has no reverse
+
 ===== venn11_296: face 0 dropped  (build/negative/venn11_296_dropface0.json, sha256 62613a1e3b549fc156cd7b86973fc00dc4c556a522212bec183f5d971d721c86)
   checkers/check_a.py: exit status 1 -> FAIL; first reason: edge 69-71 dart counts 1,0
   checkers/check_b.py: exit status 1 -> FAIL; first reason: edge (0, 1) sides [(71, -1)]
   checkers/ref37_v2.py: exit status 1 -> FAIL; first reason: FAIL: directed edge 91->27 has no reverse
+
+===== venn12_584: face 0 dropped  (build/negative/venn12_584_dropface0.json, sha256 8bec6eec44d5a10790cb3709e422612f60f9750e2f919ba7181a4d4b8b24719f)
+  checkers/check_a.py: exit status 1 -> FAIL; first reason: edge 69-71 dart counts 1,0
+  checkers/check_b.py: exit status 1 -> FAIL; first reason: edge (0, 1) sides [(0, -1)]
+  checkers/ref37_v2.py: exit status 1 -> FAIL; first reason: FAIL: directed edge 0->128 has no reverse
 
 ===== venn12_592: face 0 dropped  (build/negative/venn12_592_dropface0.json, sha256 6573a8f6556b0c8569559af5061f9555f0ed3d21a95f25ecc67f2a8b6cfb009c)
   checkers/check_a.py: exit status 1 -> FAIL; first reason: edge 69-71 dart counts 1,0
   checkers/check_b.py: exit status 1 -> FAIL; first reason: edge (0, 1) sides [(71, -1)]
   checkers/ref37_v2.py: exit status 1 -> FAIL; first reason: FAIL: directed edge 91->27 has no reverse
 
+===== venn13_1168: face 0 dropped  (build/negative/venn13_1168_dropface0.json, sha256 117af34e67411d3a1417ccc3a7626f56d580ee887c6904e6043a1b8df2b09f78)
+  checkers/check_a.py: exit status 1 -> FAIL; first reason: edge 67-71 dart counts 0,1
+  checkers/check_b.py: exit status 1 -> FAIL; first reason: edge (0, 1) sides [(0, -1)]
+  checkers/ref37_v2.py: exit status 1 -> FAIL; first reason: FAIL: directed edge 0->128 has no reverse
+
 ===== venn13_1184: face 0 dropped  (build/negative/venn13_1184_dropface0.json, sha256 a88673ca13a0dbc2b7f4ff737c960e8a6d4b8afd09ecbda5a44df2c175303277)
   checkers/check_a.py: exit status 1 -> FAIL; first reason: edge 67-71 dart counts 0,1
   checkers/check_b.py: exit status 1 -> FAIL; first reason: edge (0, 1) sides [(71, -1)]
   checkers/ref37_v2.py: exit status 1 -> FAIL; first reason: FAIL: directed edge 91->27 has no reverse
 
+===== venn14_2336: face 0 dropped  (build/negative/venn14_2336_dropface0.json, sha256 be58b3da206426a3291b09129f516fad95f2625130ef16f79ce3e794a4ff3634)
+  checkers/check_a.py: exit status 1 -> FAIL; first reason: edge 67-71 dart counts 0,1
+  checkers/check_b.py: exit status 1 -> FAIL; first reason: edge (0, 1) sides [(0, -1)]
+  checkers/ref37_v2.py: exit status 1 -> FAIL; first reason: FAIL: directed edge 0->128 has no reverse
+
 ===== venn14_2368: face 0 dropped  (build/negative/venn14_2368_dropface0.json, sha256 f3519770d6dbb5fc13edf6ea1fee6377a8ce02720ee1942da943527a5c722eb6)
   checkers/check_a.py: exit status 1 -> FAIL; first reason: edge 67-71 dart counts 0,1
   checkers/check_b.py: exit status 1 -> FAIL; first reason: edge (0, 1) sides [(71, -1)]
   checkers/ref37_v2.py: exit status 1 -> FAIL; first reason: FAIL: directed edge 91->27 has no reverse
+
+===== venn15_4672: face 0 dropped  (build/negative/venn15_4672_dropface0.json, sha256 0cd1764d7d23081357a070f5cd684e5ffffa1225b70aaade3fc0c50c7d199314)
+  checkers/check_a.py: exit status 1 -> FAIL; first reason: edge 1-3 dart counts 0,1
+  checkers/check_b.py: exit status 1 -> FAIL; first reason: edge (0, 1) sides [(0, -1)]
+  checkers/ref37_v2.py: exit status 1 -> FAIL; first reason: FAIL: directed edge 0->128 has no reverse
 
 ===== venn15_4736: face 0 dropped  (build/negative/venn15_4736_dropface0.json, sha256 c0ed9e401aa024e1c0309c03200a43ea61eee6448773526b0b2219e5e46d3727)
   checkers/check_a.py: exit status 1 -> FAIL; first reason: edge 1-3 dart counts 0,1
@@ -42,6 +72,11 @@ ae8328f8795f0a091c704f0ae5779f5ae8800d0936c0337d92922d873db39608  checkers/check
 
 ===== venn8_37_halfturn_b: face 0 dropped  (build/negative/venn8_37_halfturn_b_dropface0.json, sha256 b13cf3f7d3badcf570f861d6aaa9fc5511ab9fb04432a9ac20d117b7338d216c)
   checkers/check_a.py: exit status 1 -> FAIL; first reason: edge 83-87 dart counts 1,0
+  checkers/check_b.py: exit status 1 -> FAIL; first reason: edge (0, 1) sides [(0, -1)]
+  checkers/ref37_v2.py: exit status 1 -> FAIL; first reason: FAIL: directed edge 0->128 has no reverse
+
+===== venn9_73: face 0 dropped  (build/negative/venn9_73_dropface0.json, sha256 2978ec90522d5426679cc6abebe9e323d0294e2cb8a8dbfbb9952ee3b27d18e5)
+  checkers/check_a.py: exit status 1 -> FAIL; first reason: edge 91-123 dart counts 0,1
   checkers/check_b.py: exit status 1 -> FAIL; first reason: edge (0, 1) sides [(0, -1)]
   checkers/ref37_v2.py: exit status 1 -> FAIL; first reason: FAIL: directed edge 0->128 has no reverse
 

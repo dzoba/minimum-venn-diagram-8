@@ -28,7 +28,7 @@ had 39 crossings (Seamons). Its 37 crossings are listed in an appendix, and it h
 written programs (see the section on the use of AI tools) and in Lean~4. It has a half-turn symmetry, and in every
 $8$-Venn diagram with 37 crossings a finite group of orientation-preserving symmetries has order at most 2.
 Doubling gives a $9$-Venn diagram with 74 crossings, optimal among those in which some curve meets every other curve
-exactly twice.
+exactly twice, and a two-tube doubling of the two known 37-crossing diagrams gives one with 73 crossings.
 \end{abstract}
 
 \section{Introduction}
@@ -222,9 +222,10 @@ $n$ & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15\\
 lower bound $L_n$ \cite{BR98} & 37 & 64 & 114 & 205 & 373 & 683 & 1261 & 2341\\
 \cite[Theorem~2]{BGMV} & 40 & 80 & 160 & 320 & 640 & 1280 & 2560 & 5120\\
 this note & 37 & 74 & 148 & 296 & 592 & 1184 & 2368 & 4736\\
+this note, two-tube & 37 & 73 & 146 & 292 & 584 & 1168 & 2336 & 4672\\
 \bottomrule
 \end{tabular}
-\caption{Numbers of crossings; for $n\ge9$ the last row is by doubling (Seamons's 39 gives 78).}
+\caption{Numbers of crossings; for $n\ge9$ the last two rows are by doubling (Seamons's 39 gives 78).}
 \label{tab:double}
 \end{table}
 
@@ -247,6 +248,41 @@ on the other side, and $k\ge2$ crossings lie on $c$, so $F\ge2(L_m-1)+k$.
 This bounds one class only; in general only $L_9=64$ is known. Our search also found 74-crossing $9$-Venn diagrams
 outside the class (\texttt{venn9\_74\_mixed\_r2.json}, \texttt{venn9\_74\_k3\_nearmiss.json}). Local searches from
 these and other diagrams with 74 and 75 crossings found none with 73; they were not exhaustive and give no bound.
+The next paragraph describes a different construction that does reach 73.
+
+\paragraph{A 73-crossing 9-Venn diagram.} Applied to our 37-crossing 8-Venn diagram, \cite[Lemma~10]{BGMV} gives a
+$9$-Venn diagram with 74 crossings, the least possible in the doubling class, where one curve meets every other curve
+exactly twice. We go below it with a \emph{two-tube} doubling, which doubles along a path of faces rather than at a
+single face.
+\begin{enumerate}
+\item In the dual of an $8$-Venn diagram $D$, take an induced path of $m$ faces: consecutive faces share exactly one
+edge, and no other pair of faces in the path shares an edge. Delete those $m-1$ edges, which merges the path into one
+disc face with boundary walk $W$.
+\item Do the same in a second diagram $D'$ with a path of $m'$ faces, giving $W'$. Reflect it and relabel it by a
+hypercube automorphism $\varphi$.
+\item Glue the two along the ninth curve. The $k$ crossing points on that curve are the new faces between $k$ pairs
+of corresponding positions on $W$ and $W'$.
+\item The result has $(F_D-m)+(F_{D'}-m')+k$ crossings.
+\end{enumerate}
+The result is a valid $9$-Venn diagram if (i) each new face uses every curve 0 or 2 times, (ii) every curve closes
+into a single loop, and (iii) the new faces are simple. Condition (i) forces $\varphi$ to map the corner positions
+consistently, so no separate alignment condition is needed. Write $\varphi(x)=\pi(x)\mathbin{\triangle}c$ with $\pi$ a
+permutation of the curves. All conditions depend only on a curve $b$ and its partner $\pi^{-1}(b)$, so the admissible
+relabellings are the perfect matchings of an $8\times8$ compatibility matrix.
+
+We ran an exhaustive depth-first census over this family, with $D$ and $D'$ the two known 37-crossing diagrams, paths
+with $m+m'$ between 8 and 16, and the necessary prefilter $w_b+w'_c\ge F_D+F_{D'}-F$, where $w_b$ counts the faces of
+the path omitting curve $b$ plus its deleted edges of direction $b$. At $F=73$ it found exactly one diagram up to
+isomorphism. It comes from a 4-face path in the first 37 and a 5-face path in the second, glued at $k=8$ points, so
+$F=33+32+8=73$ (\texttt{venn9\_73.json}). There is no $F=72$ within the searched family: two-tube doubling with
+induced single-edge face paths, the $\varphi$-transformed mirror of one of the two 37s inside, and $m+m'=8,\dots,16$.
+
+The diagram passes our two release checkers, an independent from-scratch referee, and an independent pair of checkers
+with cut and crossing diagnostics, together with an independent reconstruction from the construction. It contains
+colorful faces, so the same doubling lemma gives $n$-Venn diagrams with $73\cdot2^{n-9}$ crossings for
+$n=10,\dots,15$: 146, 292, 584, 1168, 2336 and 4672 (Table~\ref{tab:double}). These files were checked by the three
+programs in \texttt{checkers/}, and \texttt{checkers/invariants.py} confirms that each is the doubling of the previous
+one. They are upper bounds. The counting lower bound at $n=9$ is 64, and we make no optimality claim.
 
 \paragraph{How the diagrams were found.} A Metropolis walk over plane spanning subgraphs of $Q_8$, given as rotation
 systems, allowed unbalanced faces and disconnected curve halves at a cost and applied each move together with its
@@ -265,7 +301,8 @@ the drawing, wrote the Lean formalization, and drafted the text. Separate Claude
 \texttt{ref37\_v2.py} and refereed this release; the referee built the two targeted negative controls. The proofs of
 Sections~\ref{sec:sym} and~\ref{sec:nine} were worked out by Claude and Codex (OpenAI). Codex contributed the
 exclusion of reflections and reviewed Proposition~\ref{prop:class}. It also wrote two further checkers and a
-reconstruction of the first diagram, which accept both 37-crossing diagrams and the 74-crossing ones, and compiled
+reconstruction of the first diagram, which accept both 37-crossing diagrams, the 74-crossing ones, the 73-crossing
+diagram and its doubling to $n=10$; it also rebuilt the 73-crossing diagram independently from the construction. It compiled
 and reviewed the Lean proof; these checkers, the reconstruction and the build logs are not part of the repository.
 The author is responsible for the content.
 
@@ -287,6 +324,7 @@ doi:10.5281/zenodo.22004839.
 \end{thebibliography}
 
 \normalsize
+\clearpage
 \appendix
 \section{The 37 faces}\label{app:faces}
 

@@ -1,0 +1,42 @@
+input: data/venn14_2336.json
+input sha256: 7e57c75cd831097f5242a83b0eb1624c3328e7da7a89648f8870584fe10d70aa
+python 3.14.7
+run at 2026-10-22 15:18:54 PDT
+ae8328f8795f0a091c704f0ae5779f5ae8800d0936c0337d92922d873db39608  checkers/check_a.py
+678dd640c7138bec26b6f317c2c4ffe0f5dc818b078364e8cb640d7ea24cf06e  checkers/check_b.py
+8acc018a70fe76c5a95998a1defadd202c345a2348522a80e9f89116f09d6399  checkers/ref37_v2.py
+
+===== python3.14 checkers/check_a.py data/venn14_2336.json
+exit status 0 (PASS), 0.29 s
+n=14 crossings(faces)=2336 edges=18718
+PASS
+
+===== python3.14 checkers/check_b.py data/venn14_2336.json
+exit status 0 (PASS), 0.16 s
+n=14 crossings=2336 edges=18718
+PASS
+
+===== python3.14 checkers/ref37_v2.py data/venn14_2336.json
+exit status 0 (PASS), 0.93 s
+argv: ['checkers/ref37_v2.py', 'data/venn14_2336.json']
+input sha256: 7e57c75cd831097f5242a83b0eb1624c3328e7da7a89648f8870584fe10d70aa
+script sha256: 8acc018a70fe76c5a95998a1defadd202c345a2348522a80e9f89116f09d6399
+curve 0: 2336 segments, through 2336 crossings, single closed curve: True
+curve 1: 2304 segments, through 2304 crossings, single closed curve: True
+curve 2: 2272 segments, through 2272 crossings, single closed curve: True
+curve 3: 2304 segments, through 2304 crossings, single closed curve: True
+curve 4: 2304 segments, through 2304 crossings, single closed curve: True
+curve 5: 2240 segments, through 2240 crossings, single closed curve: True
+curve 6: 2304 segments, through 2304 crossings, single closed curve: True
+curve 7: 2336 segments, through 2336 crossings, single closed curve: True
+curve 8: 256 segments, through 256 crossings, single closed curve: True
+curve 9: 32 segments, through 32 crossings, single closed curve: True
+curve 10: 16 segments, through 16 crossings, single closed curve: True
+curve 11: 8 segments, through 8 crossings, single closed curve: True
+curve 12: 4 segments, through 4 crossings, single closed curve: True
+curve 13: 2 segments, through 2 crossings, single closed curve: True
+touching pairs at crossings: 33220  crossing pairs: 32798
+V,E,F = 16384 18718 2336  face sizes {14: 256, 16: 1856, 18: 192, 20: 16, 22: 8, 24: 4, 26: 2, 28: 2}
+certificate edge list matches face-derived edges: True 18718
+RESULT: PASS
+

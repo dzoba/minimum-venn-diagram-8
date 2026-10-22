@@ -29,7 +29,11 @@ Also in this repository:
 - a 9-Venn diagram with 74 crossings (BGMV's table lists 80), obtained by BGMV's doubling lemma (Lemma 10 of the
   SoCG 2026 version, Lemma 11 of arXiv:2511.09230v1) and optimal among 9-Venn diagrams in which some curve meets
   every other curve exactly twice; the general lower bound for n = 9 is still 64;
-- doubled diagrams for 10 ≤ n ≤ 15 with 37·2ⁿ⁻⁸ crossings, checked only by the programs here.
+- doubled diagrams for 10 ≤ n ≤ 15 with 37·2ⁿ⁻⁸ crossings, checked only by the programs here;
+- (new in v1.1) a 9-Venn diagram with 73 crossings, `data/venn9_73.json`, obtained by a two-tube doubling of the two
+  37-crossing diagrams. It is the only diagram at F = 73 in the searched family (up to isomorphism), and none with
+  F = 72 exists in that family. This is an upper bound only; the lower bound for n = 9 is still 64;
+- (new in v1.1) its BGMV doublings for 10 ≤ n ≤ 15 with 73·2ⁿ⁻⁹ crossings: 146, 292, 584, 1168, 2336 and 4672.
 
 ## What was checked, and by what
 
@@ -41,6 +45,8 @@ Also in this repository:
 | `data/venn9_74_mixed_r2.json` | 9 | 74 | PASS | PASS | PASS | none |
 | `data/venn9_74_k3_nearmiss.json` | 9 | 74 | PASS | PASS | PASS | none |
 | `data/venn10_148.json` … `data/venn15_4736.json` | 10–15 | 148 … 4736 | PASS | PASS | PASS | each is the doubling of the previous file |
+| `data/venn9_73.json` | 9 | 73 | PASS | PASS | PASS | two-tube doubling of the two 37s |
+| `data/venn10_146.json` … `data/venn15_4672.json` | 10–15 | 146 … 4672 | PASS | PASS | PASS | each is the doubling of the previous file |
 | `calibration/venn8_39_crossing_candidate.json` | 8 | 39 | PASS | PASS | PASS | Seamons's 39 |
 | `calibration/venn8_40_source_variant030.json` | 8 | 40 | PASS | PASS | PASS | Seamons's reconstruction of BGMV's 40 |
 
@@ -58,15 +64,33 @@ give the expected reason. See `logs/negative_controls.log` and `checkers/negativ
 
 Not part of this repository, and so not evidence a reader can rerun: Codex (OpenAI) wrote two further checkers and
 a reconstruction of the first diagram, which accepted both 37-crossing diagrams and the three 74-crossing ones, and
-compiled the full Lean project (see Lean below).
+compiled the full Lean project (see Lean below). Codex's checkers also accepted the 73-crossing diagram and the
+146-crossing one, and Codex rebuilt the 73-crossing diagram independently from the stated construction, without the
+producing code, reproducing every face and edge.
 
 The name `venn9_74_k3_nearmiss` comes from the search, which was looking for a 73 in a particular class; the file is a
-valid 74-crossing diagram. The `provenance` field of each doubled file names the file it was doubled from, with its
-SHA-256.
+valid 74-crossing diagram. In the v1.0 files, the `provenance` field of each doubled file names the file it was
+doubled from, with its SHA-256. In the v1.1 files it records the construction parameters of the 73 (the two 37s, the
+face paths, the rungs and the relabelling) and, for each doubling, the provenance of the file it was doubled from,
+without SHA-256s. `checkers/invariants.py` checks both doubling chains face by face.
+
+## Changes in v1.1
+
+- Added `data/venn9_73.json`, a 9-Venn diagram with 73 crossings (two-tube doubling of the two 37-crossing diagrams),
+  and its doublings `data/venn10_146.json`, `data/venn11_292.json`, `data/venn12_584.json`,
+  `data/venn13_1168.json`, `data/venn14_2336.json` and `data/venn15_4672.json`. All seven pass `check_a.py`,
+  `check_b.py` and `ref37_v2.py`; the logs are in `logs/`.
+- These are upper bounds only. The lower bound for n = 9 is 64 and the paper makes no optimality claim there. The
+  74-crossing optimality statement is unchanged: it concerns diagrams in which some curve meets every other curve
+  exactly twice.
+- `paper/venn37.tex` and `paper/venn37.pdf` gain a paragraph describing the construction and the census, a table row,
+  and a changed sentence on local searches (they found no 73, but the two-tube doubling does). The paper is now 7
+  pages, the last being the appendix.
+- Nothing was removed. The 37-crossing certificates, the 74 and 148 … 4736 files and the Lean project are as in v1.0.
 
 ## Check it
 
-Python 3, standard library only, about 10 seconds, from the repository root:
+Python 3, standard library only, about 30 seconds, from the repository root:
 
 ```sh
 python3 checkers/run_all.py
@@ -92,7 +116,7 @@ faces alone determine the diagram; `edges` lists `[u, v, direction]` for conveni
 
 ## Contents
 
-- `paper/venn37.tex`, `paper/venn37.pdf`: the paper (6 pages; the last is the appendix listing the 37 faces).
+- `paper/venn37.tex`, `paper/venn37.pdf`: the paper (7 pages; the last is the appendix listing the 37 faces).
   `paper/venn8_37.jpg` is the figure, a 3000-pixel copy of the output of `paper/render37.py`, which draws the
   diagram from the certificate and checks the drawing against it.
 - `data/`: the certificates, with `data/SHA256SUMS`.

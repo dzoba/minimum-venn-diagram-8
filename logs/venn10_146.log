@@ -1,0 +1,38 @@
+input: data/venn10_146.json
+input sha256: f944be80080ea8187b859e15287c74ca80545bd310cabdb199e63b5f7ea0d2f8
+python 3.14.7
+run at 2026-10-22 15:18:54 PDT
+ae8328f8795f0a091c704f0ae5779f5ae8800d0936c0337d92922d873db39608  checkers/check_a.py
+678dd640c7138bec26b6f317c2c4ffe0f5dc818b078364e8cb640d7ea24cf06e  checkers/check_b.py
+8acc018a70fe76c5a95998a1defadd202c345a2348522a80e9f89116f09d6399  checkers/ref37_v2.py
+
+===== python3.14 checkers/check_a.py data/venn10_146.json
+exit status 0 (PASS), 0.06 s
+n=10 crossings(faces)=146 edges=1168
+PASS
+
+===== python3.14 checkers/check_b.py data/venn10_146.json
+exit status 0 (PASS), 0.05 s
+n=10 crossings=146 edges=1168
+PASS
+
+===== python3.14 checkers/ref37_v2.py data/venn10_146.json
+exit status 0 (PASS), 0.09 s
+argv: ['checkers/ref37_v2.py', 'data/venn10_146.json']
+input sha256: f944be80080ea8187b859e15287c74ca80545bd310cabdb199e63b5f7ea0d2f8
+script sha256: 8acc018a70fe76c5a95998a1defadd202c345a2348522a80e9f89116f09d6399
+curve 0: 146 segments, through 146 crossings, single closed curve: True
+curve 1: 144 segments, through 144 crossings, single closed curve: True
+curve 2: 142 segments, through 142 crossings, single closed curve: True
+curve 3: 144 segments, through 144 crossings, single closed curve: True
+curve 4: 144 segments, through 144 crossings, single closed curve: True
+curve 5: 140 segments, through 140 crossings, single closed curve: True
+curve 6: 144 segments, through 144 crossings, single closed curve: True
+curve 7: 146 segments, through 146 crossings, single closed curve: True
+curve 8: 16 segments, through 16 crossings, single closed curve: True
+curve 9: 2 segments, through 2 crossings, single closed curve: True
+touching pairs at crossings: 2058  crossing pairs: 2048
+V,E,F = 1024 1168 146  face sizes {14: 16, 16: 116, 18: 12, 20: 2}
+certificate edge list matches face-derived edges: True 1168
+RESULT: PASS
+

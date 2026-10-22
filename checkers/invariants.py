@@ -216,7 +216,9 @@ def main():
              'calibration/venn8_39_crossing_candidate.json', 'calibration/venn8_40_source_variant030.json',
              'data/venn9_74.json', 'data/venn9_74_mixed_r2.json', 'data/venn9_74_k3_nearmiss.json',
              'data/venn10_148.json', 'data/venn11_296.json', 'data/venn12_592.json', 'data/venn13_1184.json',
-             'data/venn14_2368.json', 'data/venn15_4736.json']
+             'data/venn14_2368.json', 'data/venn15_4736.json',
+             'data/venn9_73.json', 'data/venn10_146.json', 'data/venn11_292.json', 'data/venn12_584.json',
+             'data/venn13_1168.json', 'data/venn14_2336.json', 'data/venn15_4672.json']
     for p in files:
         n, faces, edges = basic(p)
         if n == 8:
@@ -227,9 +229,12 @@ def main():
     print('== doubling chain (BGMV doubling lemma: SoCG 2026 Lemma 10, arXiv:2511.09230v1 Lemma 11)')
     chain = ['data/venn8_37_halfturn_a.json', 'data/venn9_74.json', 'data/venn10_148.json', 'data/venn11_296.json',
              'data/venn12_592.json', 'data/venn13_1184.json', 'data/venn14_2368.json', 'data/venn15_4736.json']
-    for a, b in zip(chain, chain[1:]):
-        ok, why = is_doubling(a, b)
-        print(f'  {b} is the doubling of {a}: {ok} ({why})')
+    chain73 = ['data/venn9_73.json', 'data/venn10_146.json', 'data/venn11_292.json', 'data/venn12_584.json',
+               'data/venn13_1168.json', 'data/venn14_2336.json', 'data/venn15_4672.json']
+    for c in (chain, chain73):
+        for a, b in zip(c, c[1:]):
+            ok, why = is_doubling(a, b)
+            print(f'  {b} is the doubling of {a}: {ok} ({why})')
     print()
     print('== crossings: these files (number of faces of each file) against BGMV Table 1 (Theorem 2: 40 * 2^m) and '
           'the lower bound L_n')
@@ -238,6 +243,11 @@ def main():
         n, faces = load(p)
         Ln = -(-((1 << n) - 2) // (n - 1))
         print(f'  n={n:2d}  L_n={Ln:5d}  BGMV={bgmv[n]:5d}  here={len(faces):5d}  (37 * 2^(n-8) = {37 << (n - 8)}; '
+              f'{p})')
+    for p in chain73:
+        n, faces = load(p)
+        Ln = -(-((1 << n) - 2) // (n - 1))
+        print(f'  n={n:2d}  L_n={Ln:5d}  BGMV={bgmv[n]:5d}  here={len(faces):5d}  (73 * 2^(n-9) = {73 << (n - 9)}; '
               f'{p})')
 
 

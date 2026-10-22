@@ -153,6 +153,79 @@ Invariants of the certificates (computed from the face lists only).
   pair incidences at points: crossing 67326, touching 63074; points where no pair crosses: 0
   colorful faces (index, complementary pairs {x, ~x} with x < ~x): [(4734, [224, 16159]), (4735, [224, 16159])] (2 in all)
 
+== data/venn9_73.json
+  n=9  V=512  E=583  F=73  V-E+F=2  L_n=ceil((2^n-2)/(n-1))=64  F-L_n=9
+  face lengths: {14: 8, 16: 58, 18: 7}
+  vertex degrees: {2: 384, 3: 114, 4: 14}
+  points on curve 1..n (= edges of each direction): [73, 72, 71, 72, 72, 70, 72, 73, 8]; sorted [8, 70, 71, 72, 72, 72, 72, 73, 73]
+  deficit sum_f (n - l_f) = 74
+  pair incidences at points: crossing 1040, touching 1004; points where no pair crosses: 0
+  colorful faces (index, complementary pairs {x, ~x} with x < ~x): [(66, [33, 178, 222]), (69, [130]), (70, [61, 117])] (3 in all)
+    curve 1: points on it 73; meetings with curves [2, 3, 4, 5, 6, 7, 8, 9]: [72, 71, 72, 72, 70, 72, 73, 8]; of which crossings [40, 42, 50, 32, 48, 38, 38, 4]
+    curve 2: points on it 72; meetings with curves [1, 3, 4, 5, 6, 7, 8, 9]: [72, 70, 71, 71, 69, 71, 72, 8]; of which crossings [40, 30, 34, 40, 32, 26, 20, 6]
+    curve 3: points on it 71; meetings with curves [1, 2, 4, 5, 6, 7, 8, 9]: [71, 70, 70, 70, 68, 70, 71, 8]; of which crossings [42, 30, 38, 40, 42, 30, 34, 4]
+    curve 4: points on it 72; meetings with curves [1, 2, 3, 5, 6, 7, 8, 9]: [72, 71, 70, 71, 69, 71, 72, 8]; of which crossings [50, 34, 38, 40, 28, 32, 28, 6]
+    curve 5: points on it 72; meetings with curves [1, 2, 3, 4, 6, 7, 8, 9]: [72, 71, 70, 71, 69, 71, 72, 8]; of which crossings [32, 40, 40, 40, 46, 42, 36, 4]
+    curve 6: points on it 70; meetings with curves [1, 2, 3, 4, 5, 7, 8, 9]: [70, 69, 68, 69, 69, 69, 70, 8]; of which crossings [48, 32, 42, 28, 46, 32, 36, 2]
+    curve 7: points on it 72; meetings with curves [1, 2, 3, 4, 5, 6, 8, 9]: [72, 71, 70, 71, 71, 69, 72, 7]; of which crossings [38, 26, 30, 32, 42, 32, 30, 6]
+    curve 8: points on it 73; meetings with curves [1, 2, 3, 4, 5, 6, 7, 9]: [73, 72, 71, 72, 72, 70, 72, 8]; of which crossings [38, 20, 34, 28, 36, 36, 30, 4]
+    curve 9: points on it 8; meetings with curves [1, 2, 3, 4, 5, 6, 7, 8]: [8, 8, 8, 8, 8, 8, 7, 8]; of which crossings [4, 6, 4, 6, 4, 2, 6, 4]
+  curves meeting every other curve in exactly 2 points: none
+
+== data/venn10_146.json
+  n=10  V=1024  E=1168  F=146  V-E+F=2  L_n=ceil((2^n-2)/(n-1))=114  F-L_n=32
+  face lengths: {14: 16, 16: 116, 18: 12, 20: 2}
+  vertex degrees: {2: 768, 3: 224, 4: 32}
+  points on curve 1..n (= edges of each direction): [146, 144, 142, 144, 144, 140, 144, 146, 16, 2]; sorted [2, 16, 140, 142, 144, 144, 144, 144, 146, 146]
+  deficit sum_f (n - l_f) = 292
+  pair incidences at points: crossing 2048, touching 2058; points where no pair crosses: 0
+  colorful faces (index, complementary pairs {x, ~x} with x < ~x): [(144, [33, 478]), (145, [33, 478])] (2 in all)
+
+== data/venn11_292.json
+  n=11  V=2048  E=2338  F=292  V-E+F=2  L_n=ceil((2^n-2)/(n-1))=205  F-L_n=87
+  face lengths: {14: 32, 16: 232, 18: 24, 20: 2, 22: 2}
+  vertex degrees: {2: 1536, 3: 448, 4: 60, 5: 4}
+  points on curve 1..n (= edges of each direction): [292, 288, 284, 288, 288, 280, 288, 292, 32, 4, 2]; sorted [2, 4, 32, 280, 284, 288, 288, 288, 288, 292, 292]
+  deficit sum_f (n - l_f) = 874
+  pair incidences at points: crossing 4098, touching 4134; points where no pair crosses: 0
+  colorful faces (index, complementary pairs {x, ~x} with x < ~x): [(290, [33, 990]), (291, [33, 990])] (2 in all)
+
+== data/venn12_584.json
+  n=12  V=4096  E=4678  F=584  V-E+F=2  L_n=ceil((2^n-2)/(n-1))=373  F-L_n=211
+  face lengths: {14: 64, 16: 464, 18: 48, 20: 4, 22: 2, 24: 2}
+  vertex degrees: {2: 3072, 3: 896, 4: 120, 5: 4, 6: 4}
+  points on curve 1..n (= edges of each direction): [584, 576, 568, 576, 576, 560, 576, 584, 64, 8, 4, 2]; sorted [2, 4, 8, 64, 560, 568, 576, 576, 576, 576, 584, 584]
+  deficit sum_f (n - l_f) = 2330
+  pair incidences at points: crossing 8198, touching 8288; points where no pair crosses: 0
+  colorful faces (index, complementary pairs {x, ~x} with x < ~x): [(582, [33, 2014]), (583, [33, 2014])] (2 in all)
+
+== data/venn13_1168.json
+  n=13  V=8192  E=9358  F=1168  V-E+F=2  L_n=ceil((2^n-2)/(n-1))=683  F-L_n=485
+  face lengths: {14: 128, 16: 928, 18: 96, 20: 8, 22: 4, 24: 2, 26: 2}
+  vertex degrees: {2: 6144, 3: 1792, 4: 240, 5: 8, 6: 4, 7: 4}
+  points on curve 1..n (= edges of each direction): [1168, 1152, 1136, 1152, 1152, 1120, 1152, 1168, 128, 16, 8, 4, 2]; sorted [2, 4, 8, 16, 128, 1120, 1136, 1152, 1152, 1152, 1152, 1168, 1168]
+  deficit sum_f (n - l_f) = 5826
+  pair incidences at points: crossing 16398, touching 16598; points where no pair crosses: 0
+  colorful faces (index, complementary pairs {x, ~x} with x < ~x): [(1166, [33, 4062]), (1167, [33, 4062])] (2 in all)
+
+== data/venn14_2336.json
+  n=14  V=16384  E=18718  F=2336  V-E+F=2  L_n=ceil((2^n-2)/(n-1))=1261  F-L_n=1075
+  face lengths: {14: 256, 16: 1856, 18: 192, 20: 16, 22: 8, 24: 4, 26: 2, 28: 2}
+  vertex degrees: {2: 12288, 3: 3584, 4: 480, 5: 16, 6: 8, 7: 4, 8: 4}
+  points on curve 1..n (= edges of each direction): [2336, 2304, 2272, 2304, 2304, 2240, 2304, 2336, 256, 32, 16, 8, 4, 2]; sorted [2, 4, 8, 16, 32, 256, 2240, 2272, 2304, 2304, 2304, 2304, 2336, 2336]
+  deficit sum_f (n - l_f) = 13986
+  pair incidences at points: crossing 32798, touching 33220; points where no pair crosses: 0
+  colorful faces (index, complementary pairs {x, ~x} with x < ~x): [(2334, [33, 8158]), (2335, [33, 8158])] (2 in all)
+
+== data/venn15_4672.json
+  n=15  V=32768  E=37438  F=4672  V-E+F=2  L_n=ceil((2^n-2)/(n-1))=2341  F-L_n=2331
+  face lengths: {14: 512, 16: 3712, 18: 384, 20: 32, 22: 16, 24: 8, 26: 4, 28: 2, 30: 2}
+  vertex degrees: {2: 24576, 3: 7168, 4: 960, 5: 32, 6: 16, 7: 8, 8: 4, 9: 4}
+  points on curve 1..n (= edges of each direction): [4672, 4608, 4544, 4608, 4608, 4480, 4608, 4672, 512, 64, 32, 16, 8, 4, 2]; sorted [2, 4, 8, 16, 32, 64, 512, 4480, 4544, 4608, 4608, 4608, 4608, 4672, 4672]
+  deficit sum_f (n - l_f) = 32642
+  pair incidences at points: crossing 65598, touching 66466; points where no pair crosses: 0
+  colorful faces (index, complementary pairs {x, ~x} with x < ~x): [(4670, [33, 16350]), (4671, [33, 16350])] (2 in all)
+
 == doubling chain (BGMV doubling lemma: SoCG 2026 Lemma 10, arXiv:2511.09230v1 Lemma 11)
   data/venn9_74.json is the doubling of data/venn8_37_halfturn_a.json: True (omitted face of the smaller diagram has length 16)
   data/venn10_148.json is the doubling of data/venn9_74.json: True (omitted face of the smaller diagram has length 18)
@@ -161,6 +234,12 @@ Invariants of the certificates (computed from the face lists only).
   data/venn13_1184.json is the doubling of data/venn12_592.json: True (omitted face of the smaller diagram has length 24)
   data/venn14_2368.json is the doubling of data/venn13_1184.json: True (omitted face of the smaller diagram has length 26)
   data/venn15_4736.json is the doubling of data/venn14_2368.json: True (omitted face of the smaller diagram has length 28)
+  data/venn10_146.json is the doubling of data/venn9_73.json: True (omitted face of the smaller diagram has length 18)
+  data/venn11_292.json is the doubling of data/venn10_146.json: True (omitted face of the smaller diagram has length 20)
+  data/venn12_584.json is the doubling of data/venn11_292.json: True (omitted face of the smaller diagram has length 22)
+  data/venn13_1168.json is the doubling of data/venn12_584.json: True (omitted face of the smaller diagram has length 24)
+  data/venn14_2336.json is the doubling of data/venn13_1168.json: True (omitted face of the smaller diagram has length 26)
+  data/venn15_4672.json is the doubling of data/venn14_2336.json: True (omitted face of the smaller diagram has length 28)
 
 == crossings: these files (number of faces of each file) against BGMV Table 1 (Theorem 2: 40 * 2^m) and the lower bound L_n
   n= 8  L_n=   37  BGMV=   40  here=   37  (37 * 2^(n-8) = 37; data/venn8_37_halfturn_a.json)
@@ -171,3 +250,10 @@ Invariants of the certificates (computed from the face lists only).
   n=13  L_n=  683  BGMV= 1280  here= 1184  (37 * 2^(n-8) = 1184; data/venn13_1184.json)
   n=14  L_n= 1261  BGMV= 2560  here= 2368  (37 * 2^(n-8) = 2368; data/venn14_2368.json)
   n=15  L_n= 2341  BGMV= 5120  here= 4736  (37 * 2^(n-8) = 4736; data/venn15_4736.json)
+  n= 9  L_n=   64  BGMV=   80  here=   73  (73 * 2^(n-9) = 73; data/venn9_73.json)
+  n=10  L_n=  114  BGMV=  160  here=  146  (73 * 2^(n-9) = 146; data/venn10_146.json)
+  n=11  L_n=  205  BGMV=  320  here=  292  (73 * 2^(n-9) = 292; data/venn11_292.json)
+  n=12  L_n=  373  BGMV=  640  here=  584  (73 * 2^(n-9) = 584; data/venn12_584.json)
+  n=13  L_n=  683  BGMV= 1280  here= 1168  (73 * 2^(n-9) = 1168; data/venn13_1168.json)
+  n=14  L_n= 1261  BGMV= 2560  here= 2336  (73 * 2^(n-9) = 2336; data/venn14_2336.json)
+  n=15  L_n= 2341  BGMV= 5120  here= 4672  (73 * 2^(n-9) = 4672; data/venn15_4672.json)

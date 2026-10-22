@@ -1,7 +1,7 @@
 input: data/venn10_148.json
 input sha256: 77082bd4ad1a73da73083c70f694742729a586ba6107440cde80f30c12985974
 python 3.14.7
-run at 2026-10-18 22:39:33 EDT
+run at 2026-10-22 15:18:54 PDT
 ae8328f8795f0a091c704f0ae5779f5ae8800d0936c0337d92922d873db39608  checkers/check_a.py
 678dd640c7138bec26b6f317c2c4ffe0f5dc818b078364e8cb640d7ea24cf06e  checkers/check_b.py
 8acc018a70fe76c5a95998a1defadd202c345a2348522a80e9f89116f09d6399  checkers/ref37_v2.py
@@ -12,12 +12,12 @@ n=10 crossings(faces)=148 edges=1170
 PASS
 
 ===== python3.14 checkers/check_b.py data/venn10_148.json
-exit status 0 (PASS), 0.04 s
+exit status 0 (PASS), 0.05 s
 n=10 crossings=148 edges=1170
 PASS
 
 ===== python3.14 checkers/ref37_v2.py data/venn10_148.json
-exit status 0 (PASS), 0.08 s
+exit status 0 (PASS), 0.09 s
 argv: ['checkers/ref37_v2.py', 'data/venn10_148.json']
 input sha256: 77082bd4ad1a73da73083c70f694742729a586ba6107440cde80f30c12985974
 script sha256: 8acc018a70fe76c5a95998a1defadd202c345a2348522a80e9f89116f09d6399
